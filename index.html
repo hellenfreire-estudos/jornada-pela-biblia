@@ -2,2533 +2,575 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2b6fb3">
 <title>Jornada pela Bíblia</title>
 
 <style>
 :root{
-    --azul:#1769aa;
-    --azul-escuro:#0d3b66;
-    --azul-claro:#eaf6ff;
-    --dourado:#e8ad35;
-    --bege:#fff7e7;
-    --verde:#5e9f61;
-    --rosa:#e9899b;
-    --roxo:#7b68b5;
-    --texto:#24364b;
-    --branco:#ffffff;
-    --sombra:0 8px 25px rgba(0,0,0,.12);
+  --blue:#19558f;
+  --blue2:#2877bd;
+  --gold:#b06b12;
+  --ink:#173b63;
+  --cream:#fffdf7;
+  --card:#ffffff;
+  --shadow:0 14px 35px rgba(26,73,112,.16);
 }
-
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-    background:#eef6fb;
-    color:var(--texto);
-    min-height:100vh;
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  color:var(--ink);
+  background:linear-gradient(180deg,#d9efff 0%,#fff9e8 55%,#e8f4ff 100%);
+  -webkit-font-smoothing:antialiased;
 }
-
-button{
-    font-family:inherit;
-}
-
 .app{
-    max-width:600px;
-    margin:auto;
-    min-height:100vh;
-    background:#fff;
-    position:relative;
-    overflow:hidden;
-    padding-bottom:85px;
+  width:100%;
+  max-width:720px;
+  margin:auto;
+  min-height:100vh;
+  overflow:hidden;
+  background:rgba(255,255,255,.25);
 }
-
-.screen{
-    display:none;
-    animation:fade .35s ease;
+.hero{
+  position:relative;
+  line-height:0;
+  background:#cfe9fa;
 }
-
-.screen.active{
-    display:block;
+.hero img{
+  display:block;
+  width:100%;
+  height:auto;
 }
-
-@keyframes fade{
-    from{
-        opacity:0;
-        transform:translateY(8px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+.hotspot{
+  position:absolute;
+  border:0;
+  background:transparent;
+  cursor:pointer;
+  padding:0;
+  -webkit-tap-highlight-color:transparent;
 }
-
-/* =========================
-   ABERTURA
-========================= */
-
-.welcome{
-    min-height:100vh;
-    background:
-        linear-gradient(180deg,rgba(18,91,151,.05),rgba(255,255,255,.3)),
-        linear-gradient(180deg,#8fd3ff,#eaf8ff 50%,#f7e5b7);
-    padding:35px 22px;
-    text-align:center;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
+.hotspot:focus{
+  outline:3px solid rgba(255,255,255,.9);
+  border-radius:20px
 }
-
-.logo-book{
-    font-size:82px;
-    margin-bottom:8px;
+.hs-stories{left:3%;top:58%;width:24%;height:12%}
+.hs-learning{left:26%;top:58%;width:24%;height:12%}
+.hs-activities{left:50%;top:58%;width:24%;height:12%}
+.hs-family{left:74%;top:58%;width:24%;height:12%}
+.hs-start{
+  left:14%;
+  top:73%;
+  width:72%;
+  height:9%;
+  border-radius:45px
 }
-
-.welcome h1{
-    font-size:48px;
-    line-height:.9;
-    color:var(--azul-escuro);
-    margin-bottom:10px;
-}
-
-.welcome h1 span{
-    display:block;
-    color:#7c4b18;
-    font-size:52px;
-}
-
-.subtitle{
-    font-size:17px;
-    line-height:1.6;
-    margin:20px 0;
-    color:#274d6e;
-    font-weight:600;
-}
-
-.explorer-box{
-    background:rgba(255,255,255,.82);
-    border-radius:28px;
-    padding:22px;
-    width:100%;
-    margin:15px 0 25px;
-    box-shadow:var(--sombra);
-}
-
-.explorer-emoji{
-    font-size:70px;
-    margin-bottom:10px;
-}
-
-.explorer-box p{
-    line-height:1.6;
-}
-
-.primary-btn{
-    width:100%;
-    border:none;
-    border-radius:18px;
-    padding:18px;
-    background:linear-gradient(135deg,var(--azul),#258bd2);
-    color:white;
-    font-size:17px;
-    font-weight:800;
-    cursor:pointer;
-    box-shadow:0 6px 15px rgba(23,105,170,.3);
-}
-
-.secondary-btn{
-    width:100%;
-    border:2px solid var(--azul);
-    border-radius:18px;
-    padding:15px;
-    background:white;
-    color:var(--azul);
-    font-size:16px;
-    font-weight:700;
-    margin-top:12px;
-}
-
-/* =========================
-   CABEÇALHO
-========================= */
-
-.header{
-    padding:24px 20px 15px;
-    background:linear-gradient(135deg,#e7f5ff,#fff7df);
-}
-
-.header h2{
-    font-size:28px;
-    color:var(--azul-escuro);
-}
-
-.header p{
-    margin-top:6px;
-    color:#52657a;
-}
-
-.menu-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.avatar{
-    width:50px;
-    height:50px;
-    border-radius:50%;
-    background:linear-gradient(135deg,#ffd36e,#ff9f80);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:25px;
-}
-
-/* =========================
-   CONTEÚDO
-========================= */
 
 .content{
-    padding:20px;
+  padding:20px 16px calc(32px + env(safe-area-inset-bottom));
 }
-
+.welcome{
+  background:rgba(255,255,255,.92);
+  border-radius:28px;
+  padding:22px;
+  box-shadow:var(--shadow);
+  margin-bottom:20px;
+}
+.welcome h2{
+  margin:0 0 10px;
+  font-size:25px
+}
+.welcome p{
+  margin:0;
+  color:#48627b;
+  line-height:1.55;
+  font-size:16px
+}
 .section-title{
-    font-size:23px;
-    margin:20px 0 14px;
-    color:var(--azul-escuro);
+  margin:26px 4px 14px;
+  font-size:24px;
 }
-
-.verse-card{
-    background:linear-gradient(135deg,#fff3c9,#ffe6a1);
-    border-radius:22px;
-    padding:20px;
-    margin-bottom:20px;
-    box-shadow:var(--sombra);
-}
-
-.verse-card small{
-    font-weight:800;
-    color:#805900;
-}
-
-.verse-card p{
-    margin-top:10px;
-    font-style:italic;
-    line-height:1.6;
-}
-
-/* =========================
-   CARDS
-========================= */
-
 .grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:14px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px
+}
+.feature{
+  border:0;
+  text-align:left;
+  padding:18px;
+  min-height:150px;
+  border-radius:24px;
+  background:rgba(255,255,255,.94);
+  box-shadow:0 9px 24px rgba(32,79,116,.12);
+  color:var(--ink);
+  cursor:pointer;
+}
+.feature .icon{
+  font-size:35px;
+  display:block;
+  margin-bottom:10px
+}
+.feature strong{
+  display:block;
+  font-size:18px;
+  margin-bottom:7px
+}
+.feature span{
+  font-size:14px;
+  color:#587087;
+  line-height:1.35
+}
+.journey{
+  margin-top:24px;
+  background:linear-gradient(135deg,#1e77bd,#164f88);
+  color:white;
+  border-radius:30px;
+  padding:25px 22px;
+  box-shadow:var(--shadow);
+}
+.journey h2{
+  margin:0 0 8px;
+  font-size:25px
+}
+.journey p{
+  margin:0 0 18px;
+  line-height:1.5;
+  opacity:.95
+}
+.primary{
+  width:100%;
+  border:0;
+  border-radius:18px;
+  padding:17px;
+  background:#fff;
+  color:#1b5f9d;
+  font-size:18px;
+  font-weight:800;
+  cursor:pointer;
+}
+.lesson{
+  margin-top:22px;
+  background:#fffdf7;
+  border-radius:28px;
+  padding:22px;
+  box-shadow:var(--shadow);
+}
+.lesson .badge{
+  display:inline-block;
+  background:#fff0c8;
+  color:#92600e;
+  border-radius:99px;
+  padding:7px 12px;
+  font-weight:700;
+  font-size:13px;
+}
+.lesson h3{
+  font-size:23px;
+  margin:14px 0 10px
+}
+.lesson p{
+  color:#526b80;
+  line-height:1.6;
+  margin:0 0 14px
+}
+.secondary{
+  border:0;
+  border-radius:16px;
+  padding:14px 18px;
+  background:#e8f3ff;
+  color:#19558f;
+  font-weight:800;
+  font-size:16px;
+  cursor:pointer;
+}
+.footer{
+  text-align:center;
+  padding:28px 18px 10px;
+  color:#365d7d;
+  font-style:italic;
+  line-height:1.55;
+}
+.footer small{
+  display:block;
+  margin-top:8px;
+  font-style:normal;
+  letter-spacing:1px;
+  font-weight:700
 }
 
-.menu-card{
-    border:none;
-    border-radius:22px;
-    min-height:145px;
-    padding:18px;
-    text-align:left;
-    cursor:pointer;
-    box-shadow:var(--sombra);
-    transition:.2s;
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(10,35,55,.48);
+  display:none;
+  align-items:flex-end;
+  justify-content:center;
+  padding:16px;
+  z-index:20;
+}
+.modal.show{
+  display:flex
+}
+.modal-card{
+  width:min(720px,100%);
+  background:#fff;
+  border-radius:30px 30px 22px 22px;
+  padding:25px 22px calc(22px + env(safe-area-inset-bottom));
+  box-shadow:0 -10px 40px rgba(0,0,0,.18);
+  animation:up .25s ease-out;
+}
+@keyframes up{
+  from{
+    transform:translateY(30px);
+    opacity:0
+  }
+  to{
+    transform:none;
+    opacity:1
+  }
+}
+.modal-card h2{
+  margin:0 0 10px;
+  color:#19558f
+}
+.modal-card p{
+  line-height:1.6;
+  color:#536d82
+}
+.close{
+  float:right;
+  border:0;
+  background:#edf4fa;
+  color:#19558f;
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  font-size:22px;
+  cursor:pointer;
+}
+.choice{
+  width:100%;
+  margin-top:10px;
+  border:0;
+  border-radius:18px;
+  padding:16px;
+  background:#f4f8fb;
+  color:#214d74;
+  text-align:left;
+  font-weight:700;
+  font-size:16px;
+}
+.choice:active,
+.feature:active,
+.primary:active,
+.secondary:active{
+  transform:scale(.98)
 }
 
-.menu-card:active{
-    transform:scale(.97);
-}
-
-.menu-card .icon{
-    font-size:38px;
-}
-
-.menu-card h3{
-    margin-top:10px;
-    font-size:17px;
-}
-
-.menu-card p{
-    font-size:12px;
-    margin-top:5px;
-    opacity:.75;
-}
-
-.blue{background:#dff2ff;}
-.yellow{background:#fff0c7;}
-.green{background:#ddf4df;}
-.pink{background:#ffe1e8;}
-.purple{background:#e9e2ff;}
-.orange{background:#ffe6ce;}
-
-/* =========================
-   MISSÃO
-========================= */
-
-.mission{
-    margin-top:20px;
-    background:linear-gradient(135deg,#fff9df,#fff0ba);
-    border-radius:22px;
-    padding:18px;
-    display:flex;
-    gap:15px;
-    align-items:center;
-    box-shadow:var(--sombra);
-}
-
-.mission-icon{
-    font-size:38px;
-}
-
-/* =========================
-   NAVEGAÇÃO
-========================= */
-
-.bottom-nav{
-    position:fixed;
-    bottom:0;
-    left:50%;
-    transform:translateX(-50%);
-    width:100%;
-    max-width:600px;
-    height:78px;
-    background:white;
-    border-top:1px solid #e7edf2;
-    display:flex;
-    justify-content:space-around;
-    align-items:center;
-    z-index:100;
-    box-shadow:0 -4px 18px rgba(0,0,0,.06);
-}
-
-.nav-item{
-    background:none;
-    border:none;
-    color:#718093;
-    font-size:11px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:4px;
-    cursor:pointer;
-}
-
-.nav-item span:first-child{
-    font-size:23px;
-}
-
-.nav-item.active{
-    color:var(--azul);
-    font-weight:800;
-}
-
-/* =========================
-   HISTÓRIAS
-========================= */
-
-.story-list{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-}
-
-.story-card{
-    width:100%;
-    border:none;
-    background:white;
-    padding:14px;
-    border-radius:20px;
-    display:flex;
-    align-items:center;
-    gap:14px;
-    text-align:left;
-    cursor:pointer;
-    box-shadow:0 5px 18px rgba(0,0,0,.08);
-}
-
-.story-number{
-    width:52px;
-    height:52px;
-    min-width:52px;
-    border-radius:17px;
-    background:linear-gradient(135deg,var(--azul),#5db5ef);
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:21px;
-    font-weight:900;
-}
-
-.story-info{
-    flex:1;
-}
-
-.story-info h3{
-    font-size:16px;
-    color:var(--azul-escuro);
-}
-
-.story-info p{
-    font-size:12px;
-    margin-top:4px;
-    color:#6d7d8d;
-}
-
-.arrow{
-    font-size:22px;
-    color:var(--azul);
-}
-
-/* =========================
-   DETALHE DA HISTÓRIA
-========================= */
-
-.story-hero{
-    min-height:210px;
-    padding:28px 20px;
-    color:white;
-    background:
-        radial-gradient(circle at 70% 20%,#ffe777 0,transparent 25%),
-        linear-gradient(135deg,#1769aa,#4aa8dc);
-    display:flex;
-    flex-direction:column;
-    justify-content:flex-end;
-}
-
-.story-hero .big-icon{
-    font-size:72px;
-    margin-bottom:12px;
-}
-
-.story-hero h1{
-    font-size:34px;
-    line-height:1.05;
-}
-
-.reference{
-    margin-top:8px;
-    font-weight:700;
-}
-
-.tab-buttons{
-    display:flex;
-    gap:8px;
-    padding:14px;
-    overflow-x:auto;
-    background:#fff;
-}
-
-.tab{
-    border:none;
-    padding:11px 14px;
-    white-space:nowrap;
-    border-radius:14px;
-    background:#edf2f6;
-    color:#506275;
-    font-weight:700;
-    cursor:pointer;
-}
-
-.tab.active{
-    background:var(--azul);
-    color:white;
-}
-
-.story-content{
-    padding:20px;
-}
-
-.info-box{
-    background:#f7fbff;
-    border-radius:20px;
-    padding:18px;
-    margin-bottom:16px;
-    border:1px solid #dceefa;
-}
-
-.info-box h3{
-    color:var(--azul-escuro);
-    margin-bottom:10px;
-}
-
-.info-box p{
-    line-height:1.7;
-}
-
-.god-card{
-    background:linear-gradient(135deg,#fff7df,#fffdf7);
-    border-radius:20px;
-    padding:18px;
-    margin-bottom:14px;
-    border:1px solid #f1dfaa;
-}
-
-.god-card .god-title{
-    font-size:18px;
-    font-weight:900;
-    color:#805900;
-    margin-bottom:12px;
-}
-
-.god-point{
-    background:white;
-    padding:13px;
-    border-radius:14px;
-    margin-top:9px;
-    line-height:1.5;
-}
-
-.god-point strong{
-    color:var(--azul-escuro);
-}
-
-.note{
-    font-size:13px;
-    line-height:1.6;
-    background:#eef7ff;
-    border-left:5px solid var(--azul);
-    padding:14px;
-    border-radius:10px;
-    margin:18px 0;
-}
-
-/* =========================
-   ATIVIDADES
-========================= */
-
-.activity-card{
-    background:white;
-    border-radius:22px;
-    padding:20px;
-    box-shadow:var(--sombra);
-    margin-bottom:18px;
-}
-
-.activity-card h3{
-    color:var(--azul-escuro);
-    margin-bottom:10px;
-}
-
-.checkbox-list label{
-    display:block;
-    padding:12px;
-    background:#f5f9fc;
-    border-radius:12px;
-    margin-top:8px;
-}
-
-.checkbox-list input{
-    margin-right:10px;
-    transform:scale(1.3);
-}
-
-.quiz-option{
-    width:100%;
-    text-align:left;
-    border:2px solid #dfeaf1;
-    background:white;
-    border-radius:14px;
-    padding:14px;
-    margin-top:10px;
-    cursor:pointer;
-    font-size:15px;
-}
-
-.quiz-option.correct{
-    border-color:#55a65b;
-    background:#e5f8e7;
-}
-
-.quiz-option.wrong{
-    border-color:#df5d5d;
-    background:#ffe8e8;
-}
-
-.answer-box{
-    width:100%;
-    min-height:100px;
-    border:2px dashed #aac4d7;
-    border-radius:15px;
-    padding:14px;
-    font-size:15px;
-    resize:vertical;
-}
-
-/* =========================
-   PROGRESSO
-========================= */
-
-.progress-card{
-    background:linear-gradient(135deg,#e7f6ff,#fff7df);
-    border-radius:25px;
-    padding:22px;
-    margin-bottom:18px;
-}
-
-.progress-bar{
-    width:100%;
-    height:16px;
-    background:#dce5eb;
-    border-radius:20px;
-    overflow:hidden;
-    margin:12px 0;
-}
-
-.progress-fill{
-    height:100%;
-    background:linear-gradient(90deg,#4caa5c,#a7d95d);
-    border-radius:20px;
-    transition:.4s;
-}
-
-.stats{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-}
-
-.stat{
-    background:white;
-    border-radius:18px;
-    padding:16px;
-    text-align:center;
-    box-shadow:0 4px 14px rgba(0,0,0,.06);
-}
-
-.stat strong{
-    display:block;
-    font-size:28px;
-    color:var(--azul);
-}
-
-.achievement{
-    padding:14px;
-    border-radius:17px;
-    background:#f6f8fa;
-    margin-top:10px;
-    opacity:.45;
-}
-
-.achievement.unlocked{
-    opacity:1;
-    background:#fff4ce;
-}
-
-/* =========================
-   FAMÍLIA
-========================= */
-
-.family-card{
-    background:linear-gradient(135deg,#e9ddff,#fff);
-    border-radius:25px;
-    padding:22px;
-    box-shadow:var(--sombra);
-}
-
-.family-emoji{
-    font-size:65px;
-    text-align:center;
-    margin-bottom:12px;
-}
-
-.question{
-    background:white;
-    padding:15px;
-    border-radius:15px;
-    margin-top:10px;
-}
-
-/* =========================
-   ORAÇÃO
-========================= */
-
-.prayer-card{
-    background:linear-gradient(180deg,#dff4ff,#fff9e9);
-    border-radius:25px;
-    padding:24px;
-    box-shadow:var(--sombra);
-}
-
-.prayer-emoji{
-    font-size:70px;
-    text-align:center;
-    margin-bottom:15px;
-}
-
-.prayer-text{
-    font-style:italic;
-    line-height:1.8;
-    background:white;
-    border-radius:18px;
-    padding:18px;
-}
-
-/* =========================
-   CERTIFICADO
-========================= */
-
-.certificate{
-    background:#fff9e9;
-    border:8px solid #d7aa45;
-    padding:30px 20px;
-    text-align:center;
-    border-radius:12px;
-    margin:20px;
-}
-
-.certificate h1{
-    color:#7b5715;
-}
-
-.certificate .name-line{
-    border-bottom:2px solid #777;
-    margin:25px auto;
-    width:85%;
-    padding:8px;
-    font-size:22px;
-}
-
-.hidden{
-    display:none !important;
-}
-
-.save-btn{
-    margin-top:12px;
-    width:100%;
-    border:none;
-    padding:15px;
-    border-radius:15px;
-    background:var(--verde);
-    color:white;
-    font-size:16px;
-    font-weight:800;
-}
-
-/* =========================
-   RESPONSIVO
-========================= */
-
-@media(min-width:601px){
-    body{
-        background:#dfeaf1;
-    }
-
-    .app{
-        box-shadow:0 0 40px rgba(0,0,0,.15);
-    }
+@media(min-width:650px){
+  .content{
+    padding:28px
+  }
+  .grid{
+    grid-template-columns:repeat(4,1fr)
+  }
+  .feature{
+    min-height:170px
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="app">
+<main class="app">
 
-<!-- =========================================
-TELA DE ABERTURA
-========================================= -->
+  <!-- A imagem é a capa visual oficial da Jornada -->
+  <section class="hero" aria-label="Jornada pela Bíblia">
 
-<section id="welcomeScreen" class="screen active">
+    <img 
+      src="jornada-pela-biblia.png" 
+      alt="Jornada pela Bíblia — crianças descobrindo a Palavra de Deus"
+    >
+
+    <button 
+      class="hotspot hs-stories" 
+      aria-label="Abrir Histórias Bíblicas" 
+      onclick="openSection('Histórias Bíblicas')">
+    </button>
+
+    <button 
+      class="hotspot hs-learning" 
+      aria-label="Abrir Aprendizado" 
+      onclick="openSection('Aprendizado')">
+    </button>
+
+    <button 
+      class="hotspot hs-activities" 
+      aria-label="Abrir Atividades" 
+      onclick="openSection('Atividades')">
+    </button>
+
+    <button 
+      class="hotspot hs-family" 
+      aria-label="Abrir Para a Família" 
+      onclick="openSection('Para a Família')">
+    </button>
+
+    <button 
+      class="hotspot hs-start" 
+      aria-label="Começar a Jornada" 
+      onclick="startJourney()">
+    </button>
+
+  </section>
+
+
+  <section class="content">
 
     <div class="welcome">
+      <h2>✨ Bem-vindo à Jornada!</h2>
 
-        <div class="logo-book">📖✨</div>
-
-        <h1>
-            Jornada
-            <span>pela Bíblia</span>
-        </h1>
-
-        <div class="subtitle">
-            Descobrindo a Palavra de Deus.<br>
-            Conhecendo o Seu amor.<br>
-            Crescendo na fé.
-        </div>
-
-        <div class="explorer-box">
-            <div class="explorer-emoji">🧒👧📖</div>
-
-            <p>
-                Uma jornada especial para crianças, famílias e educadores
-                conhecerem a Palavra de Deus.
-            </p>
-        </div>
-
-        <button class="primary-btn" onclick="startJourney()">
-            🚀 COMEÇAR MINHA JORNADA
-        </button>
-
-        <button class="secondary-btn" onclick="startJourney()">
-            📖 ENTRAR NA JORNADA
-        </button>
-
+      <p>
+        Um espaço especial para crianças, famílias e educadores conhecerem 
+        a Palavra de Deus de forma leve, bonita e cheia de amor.
+      </p>
     </div>
 
-</section>
+
+    <h2 class="section-title">Explore a Jornada</h2>
 
 
-<!-- =========================================
-TELA INICIAL
-========================================= -->
+    <div class="grid">
 
-<section id="homeScreen" class="screen">
-
-    <div class="header">
-
-        <div class="menu-top">
-
-            <div>
-                <h2>Olá, Explorador! 👋</h2>
-                <p>Que alegria ter você aqui.</p>
-            </div>
-
-            <div class="avatar">😊</div>
-
-        </div>
-
-    </div>
-
-    <div class="content">
-
-        <div class="verse-card">
-
-            <small>📖 PALAVRA PARA HOJE</small>
-
-            <p>
-                “A tua palavra é lâmpada que ilumina os meus passos
-                e luz que clareia o meu caminho.”
-            </p>
-
-            <strong>Salmo 119:105</strong>
-
-        </div>
+      <button class="feature" onclick="openSection('Histórias Bíblicas')">
+        <span class="icon">📖</span>
+        <strong>Histórias Bíblicas</strong>
+        <span>Grandes histórias contadas de forma especial.</span>
+      </button>
 
 
-        <div class="grid">
-
-            <button class="menu-card blue" onclick="showScreen('storiesScreen')">
-                <div class="icon">📖</div>
-                <h3>Histórias Bíblicas</h3>
-                <p>Conheça as passagens da Bíblia</p>
-            </button>
-
-            <button class="menu-card yellow" onclick="showScreen('activitiesScreen')">
-                <div class="icon">🧩</div>
-                <h3>Atividades</h3>
-                <p>Aprenda de forma divertida</p>
-            </button>
-
-            <button class="menu-card green" onclick="showScreen('journeyScreen')">
-                <div class="icon">🏆</div>
-                <h3>Minha Jornada</h3>
-                <p>Veja seu progresso</p>
-            </button>
-
-            <button class="menu-card pink" onclick="showScreen('familyScreen')">
-                <div class="icon">👨‍👩‍👧</div>
-                <h3>Família</h3>
-                <p>Momentos especiais juntos</p>
-            </button>
-
-        </div>
+      <button class="feature" onclick="openSection('Aprendizado')">
+        <span class="icon">💡</span>
+        <strong>Aprendizado</strong>
+        <span>Lições para levar a Palavra para o dia a dia.</span>
+      </button>
 
 
-        <div class="mission">
-
-            <div class="mission-icon">🎯</div>
-
-            <div>
-                <strong>MISSÃO DO DIA</strong>
-
-                <p>
-                    Agradeça a Deus por uma coisa especial hoje.
-                </p>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
+      <button class="feature" onclick="openSection('Atividades')">
+        <span class="icon">🌱</span>
+        <strong>Atividades</strong>
+        <span>Brincar, pensar, aprender e crescer.</span>
+      </button>
 
 
-<!-- =========================================
-HISTÓRIAS
-========================================= -->
-
-<section id="storiesScreen" class="screen">
-
-    <div class="header">
-        <h2>📖 Histórias Bíblicas</h2>
-        <p>Jornada pela Palavra de Deus</p>
-    </div>
-
-    <div class="content">
-
-        <div class="note">
-            <strong>📖 Nosso fundamento:</strong><br>
-            A Bíblia é a Palavra de Deus. Este aplicativo oferece
-            explicações e atividades complementares e incentiva
-            a leitura das passagens diretamente na Bíblia.
-        </div>
-
-        <h3 class="section-title">
-            🌟 Grandes Aventuras do Antigo Testamento
-        </h3>
-
-        <div id="storyList" class="story-list"></div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================
-DETALHE DA HISTÓRIA
-========================================= -->
-
-<section id="storyDetailScreen" class="screen">
-
-    <div id="storyHero" class="story-hero">
-
-        <button
-            onclick="showScreen('storiesScreen')"
-            style="
-            width:48px;
-            height:48px;
-            border-radius:50%;
-            border:none;
-            background:white;
-            color:#1769aa;
-            font-size:24px;
-            margin-bottom:auto;
-            ">
-            ←
-        </button>
-
-        <div id="storyIcon" class="big-icon">🌍</div>
-
-        <h1 id="storyTitle">A Criação</h1>
-
-        <div id="storyReference" class="reference">
-            📖 Gênesis 1 e 2
-        </div>
+      <button class="feature" onclick="openSection('Para a Família')">
+        <span class="icon">❤️</span>
+        <strong>Para a Família</strong>
+        <span>Momentos especiais para viver juntos.</span>
+      </button>
 
     </div>
 
 
-    <div class="tab-buttons">
+    <section class="journey">
 
-        <button class="tab active" onclick="showStoryTab('history',this)">
-            📖 História
-        </button>
+      <h2>🚀 Pronto para começar?</h2>
 
-        <button class="tab" onclick="showStoryTab('god',this)">
-            ✨ Sobre Deus
-        </button>
+      <p>
+        Cada jornada começa com um pequeno passo. 
+        Vamos descobrir juntos uma nova história da Bíblia?
+      </p>
 
-        <button class="tab" onclick="showStoryTab('activity',this)">
-            🧩 Atividade
-        </button>
+      <button class="primary" onclick="startJourney()">
+        ▶ Começar a Jornada
+      </button>
 
-        <button class="tab" onclick="showStoryTab('family',this)">
-            👨‍👩‍👧 Família
-        </button>
+    </section>
 
-        <button class="tab" onclick="showStoryTab('prayer',this)">
-            🙏 Oração
-        </button>
+
+    <section class="lesson" id="lesson">
+
+      <span class="badge">MISSÃO DE HOJE</span>
+
+      <h3>💛 Deus conhece você</h3>
+
+      <p>
+        Você é especial, amado e nunca está sozinho. 
+        A Bíblia nos ensina que Deus cuida de cada detalhe da nossa vida.
+      </p>
+
+      <button class="secondary" onclick="showMessage()">
+        Descobrir a lição ✨
+      </button>
+
+    </section>
+
+
+    <div class="footer">
+
+      “Lâmpada para os meus pés é a tua palavra e luz para o meu caminho.”
+
+      <small>SALMOS 119:105</small>
 
     </div>
 
+  </section>
 
-    <div class="story-content">
+</main>
 
-        <div id="historyTab">
 
-            <div class="info-box">
+<div class="modal" id="modal" onclick="closeOutside(event)">
 
-                <h3>📖 Leia na Bíblia</h3>
+  <div class="modal-card">
 
-                <p id="historyReference"></p>
-
-            </div>
-
-
-            <div class="info-box">
-
-                <h3>📖 Conhecendo a passagem</h3>
-
-                <p id="historyText"></p>
-
-            </div>
-
-
-            <div class="note">
-                <strong>Importante:</strong><br>
-                Esta explicação é um material complementar para ajudar
-                na compreensão. Leia a passagem diretamente na sua Bíblia.
-            </div>
-
-
-            <div class="info-box">
-
-                <h3>💡 Compreendendo a mensagem</h3>
-
-                <p id="messageText"></p>
-
-            </div>
-
-
-            <button class="primary-btn" onclick="completeStory()">
-                ✅ CONCLUIR ESTA ETAPA
-            </button>
-
-        </div>
-
-
-        <div id="godTab" class="hidden">
-
-            <div class="god-card">
-
-                <div class="god-title">
-                    ✨ O que esta passagem nos ensina sobre Deus?
-                </div>
-
-                <div id="godContent"></div>
-
-            </div>
-
-        </div>
-
-
-        <div id="activityTab" class="hidden">
-
-            <div class="activity-card">
-
-                <h3>🎨 Missão da Jornada</h3>
-
-                <p id="activityText"></p>
-
-            </div>
-
-
-            <div class="activity-card">
-
-                <h3>❓ Quiz</h3>
-
-                <p id="quizQuestion"></p>
-
-                <div id="quizOptions"></div>
-
-            </div>
-
-        </div>
-
-
-        <div id="familyTab" class="hidden">
-
-            <div class="family-card">
-
-                <div class="family-emoji">👨‍👩‍👧📖</div>
-
-                <h2>Momento em Família</h2>
-
-                <p style="margin-top:10px">
-                    Conversem juntos sobre a Palavra de Deus.
-                </p>
-
-                <div id="familyQuestions"></div>
-
-            </div>
-
-        </div>
-
-
-        <div id="prayerTab" class="hidden">
-
-            <div class="prayer-card">
-
-                <div class="prayer-emoji">🙏</div>
-
-                <h2>Minha Oração</h2>
-
-                <div id="prayerText" class="prayer-text"></div>
-
-                <h3 style="margin-top:20px">
-                    Hoje quero conversar com Deus sobre:
-                </h3>
-
-                <textarea
-                    id="personalPrayer"
-                    class="answer-box"
-                    placeholder="Escreva aqui sua oração..."
-                    style="margin-top:12px">
-                </textarea>
-
-                <button class="save-btn" onclick="savePrayer()">
-                    🙏 SALVAR MINHA ORAÇÃO
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================
-ATIVIDADES
-========================================= -->
-
-<section id="activitiesScreen" class="screen">
-
-    <div class="header">
-        <h2>🧩 Atividades</h2>
-        <p>Aprendendo e refletindo sobre a Palavra de Deus.</p>
-    </div>
-
-    <div class="content">
-
-        <div class="activity-card">
-
-            <h3>🎨 Minha Gratidão</h3>
-
-            <p>
-                Pense em algo pelo qual você é grato a Deus hoje.
-            </p>
-
-            <textarea
-                id="gratitudeText"
-                class="answer-box"
-                placeholder="Eu agradeço a Deus por..."
-                style="margin-top:15px">
-            </textarea>
-
-            <button class="save-btn" onclick="saveGratitude()">
-                💛 SALVAR MINHA GRATIDÃO
-            </button>
-
-        </div>
-
-
-        <div class="activity-card">
-
-            <h3>📖 Minha Missão</h3>
-
-            <p>
-                Marque as ações que você deseja praticar:
-            </p>
-
-            <div class="checkbox-list">
-
-                <label>
-                    <input type="checkbox" class="missionCheck">
-                    Agradecer a Deus
-                </label>
-
-                <label>
-                    <input type="checkbox" class="missionCheck">
-                    Ler uma passagem da Bíblia
-                </label>
-
-                <label>
-                    <input type="checkbox" class="missionCheck">
-                    Conversar sobre a Bíblia com minha família
-                </label>
-
-                <label>
-                    <input type="checkbox" class="missionCheck">
-                    Fazer uma oração
-                </label>
-
-            </div>
-
-            <button class="save-btn" onclick="saveActivities()">
-                ✅ SALVAR MINHAS ATIVIDADES
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================
-MINHA JORNADA
-========================================= -->
-
-<section id="journeyScreen" class="screen">
-
-    <div class="header">
-        <h2>🏆 Minha Jornada</h2>
-        <p>Veja o caminho que você já percorreu.</p>
-    </div>
-
-    <div class="content">
-
-        <div class="progress-card">
-
-            <h2>🌟 Explorador da Palavra</h2>
-
-            <p id="levelText">Nível: Iniciante</p>
-
-            <div class="progress-bar">
-                <div id="progressFill" class="progress-fill"></div>
-            </div>
-
-            <p id="progressText">0 de 12 histórias concluídas</p>
-
-        </div>
-
-
-        <div class="stats">
-
-            <div class="stat">
-                <strong id="storiesCompleted">0</strong>
-                📖 Histórias
-            </div>
-
-            <div class="stat">
-                <strong id="activitiesCompleted">0</strong>
-                🧩 Atividades
-            </div>
-
-            <div class="stat">
-                <strong id="prayersCompleted">0</strong>
-                🙏 Orações
-            </div>
-
-            <div class="stat">
-                <strong id="familyCompleted">0</strong>
-                👨‍👩‍👧 Família
-            </div>
-
-        </div>
-
-
-        <h3 class="section-title">🏅 Conquistas</h3>
-
-        <div id="achievements"></div>
-
-
-        <button class="primary-btn" style="margin-top:20px" onclick="openCertificate()">
-            🏆 VER MEU CERTIFICADO
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================
-FAMÍLIA
-========================================= -->
-
-<section id="familyScreen" class="screen">
-
-    <div class="header">
-        <h2>👨‍👩‍👧 Momento em Família</h2>
-        <p>A Palavra de Deus compartilhada em família.</p>
-    </div>
-
-    <div class="content">
-
-        <div class="family-card">
-
-            <div class="family-emoji">👨‍👩‍👧📖❤️</div>
-
-            <h2>Vamos conversar?</h2>
-
-            <div class="question">
-                <strong>1.</strong>
-                Qual passagem bíblica você gostaria de conhecer melhor?
-            </div>
-
-            <div class="question">
-                <strong>2.</strong>
-                O que aprendemos sobre Deus por meio da Sua Palavra?
-            </div>
-
-            <div class="question">
-                <strong>3.</strong>
-                Como nossa família pode separar um momento para ler a Bíblia?
-            </div>
-
-            <button class="save-btn" onclick="completeFamily()">
-                👨‍👩‍👧 CONCLUÍMOS NOSSO MOMENTO EM FAMÍLIA
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================
-CERTIFICADO
-========================================= -->
-
-<section id="certificateScreen" class="screen">
-
-    <div class="header">
-
-        <button
-            onclick="showScreen('journeyScreen')"
-            style="
-            border:none;
-            background:none;
-            font-size:28px;
-            color:#1769aa;
-            ">
-            ←
-        </button>
-
-        <h2>🏆 Meu Certificado</h2>
-
-    </div>
-
-
-    <div class="certificate">
-
-        <div style="font-size:55px">📖🏆✨</div>
-
-        <h1>CERTIFICADO</h1>
-
-        <h3 style="margin-top:8px">
-            DE EXPLORADOR DA PALAVRA
-        </h3>
-
-        <p style="margin-top:25px">
-            Certificamos que
-        </p>
-
-        <div id="certificateName" class="name-line">
-            Explorador da Palavra
-        </div>
-
-        <p>
-            está realizando sua jornada de conhecimento
-            pela Palavra de Deus.
-        </p>
-
-        <h3 style="margin-top:22px">
-            JORNADA PELA BÍBLIA
-        </h3>
-
-        <p style="margin-top:15px">
-            Grandes Aventuras do Antigo Testamento
-        </p>
-
-        <p style="margin-top:25px">
-            📖 Descobrindo a Palavra de Deus.<br>
-            ❤️ Conhecendo o Seu amor.<br>
-            🙏 Crescendo na fé.
-        </p>
-
-    </div>
-
-
-    <div class="content">
-
-        <input
-            id="childName"
-            type="text"
-            placeholder="Digite o nome do explorador"
-            style="
-            width:100%;
-            padding:16px;
-            border-radius:15px;
-            border:2px solid #d8e4eb;
-            font-size:16px;
-            "
-            oninput="updateCertificateName()"
-        >
-
-        <button class="primary-btn" style="margin-top:14px" onclick="window.print()">
-            🖨️ IMPRIMIR CERTIFICADO
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================
-NAVEGAÇÃO
-========================================= -->
-
-<nav id="bottomNav" class="bottom-nav hidden">
-
-    <button class="nav-item active" onclick="goHome(this)">
-        <span>🏠</span>
-        <span>Início</span>
+    <button 
+      class="close" 
+      onclick="closeModal()" 
+      aria-label="Fechar">
+      ×
     </button>
 
-    <button class="nav-item" onclick="goStories(this)">
-        <span>📖</span>
-        <span>Histórias</span>
-    </button>
+    <h2 id="modalTitle">Jornada pela Bíblia</h2>
 
-    <button class="nav-item" onclick="goActivities(this)">
-        <span>🧩</span>
-        <span>Atividades</span>
-    </button>
+    <p id="modalText"></p>
 
-    <button class="nav-item" onclick="goJourney(this)">
-        <span>🏆</span>
-        <span>Jornada</span>
-    </button>
+    <div id="modalChoices"></div>
 
-    <button class="nav-item" onclick="goFamily(this)">
-        <span>👨‍👩‍👧</span>
-        <span>Família</span>
-    </button>
-
-</nav>
+  </div>
 
 </div>
 
 
 <script>
 
-/* =========================================
-DADOS DAS HISTÓRIAS
-========================================= */
+const content = {
+
+  "Histórias Bíblicas": {
+    text:"Vamos viajar pelas histórias que transformaram gerações e descobrir o amor de Deus em cada uma delas.",
+
+    choices:[
+      "🌈 A Arca de Noé",
+      "⭐ Abraão e a Promessa",
+      "🦁 Daniel na Cova dos Leões",
+      "🐋 Jonas e o Grande Peixe"
+    ]
+  },
+
+
+  "Aprendizado": {
+    text:"Aqui vamos transformar histórias e ensinamentos da Bíblia em lições simples para a vida.",
+
+    choices:[
+      "💛 Amor",
+      "🤝 Perdão",
+      "🙏 Fé",
+      "✨ Esperança"
+    ]
+  },
+
+
+  "Atividades": {
+    text:"Aprender também pode ser divertido! Escolha uma atividade para começar.",
+
+    choices:[
+      "🎨 Colorir",
+      "🧩 Desafio Bíblico",
+      "❓ Quiz",
+      "💬 Versículo do Dia"
+    ]
+  },
+
+
+  "Para a Família": {
+    text:"Momentos para conversar, aprender e crescer juntos em família.",
+
+    choices:[
+      "👨‍👩‍👧 Momento em Família",
+      "🙏 Oração em Família",
+      "💬 Perguntas para Conversar",
+      "❤️ Desafio da Semana"
+    ]
+  }
 
-const stories = [
-
-{
-number:1,
-icon:"🌍",
-title:"A Criação",
-reference:"Gênesis 1 e 2",
-
-history:`
-A Bíblia começa mostrando que Deus é o Criador de todas as coisas.
-A narrativa de Gênesis apresenta Deus criando os céus e a terra,
-a luz, os mares, a terra seca, as plantas, os animais e o ser humano.
-A criação revela a grandeza, o poder e a sabedoria de Deus.
-`,
-
-message:`
-A criação nos convida a reconhecer que tudo pertence a Deus.
-Podemos observar a beleza do mundo e agradecer ao Criador.
-Também aprendemos que devemos cuidar daquilo que Deus criou.
-`,
-
-god:[
-["🌎 Deus é o Criador de todas as coisas.","Referência: Gênesis 1:1."],
-["✨ Deus é poderoso.","A criação acontece segundo a vontade e o poder de Deus."],
-["🌱 Deus criou todas as coisas com ordem.","A narrativa de Gênesis apresenta a criação realizada segundo o propósito de Deus."],
-["❤️ Deus criou o ser humano de maneira especial.","Referência: Gênesis 1:26–27."]
-],
-
-activity:"Observe três coisas bonitas na criação de Deus e conte para sua família qual delas chamou mais sua atenção.",
-
-quiz:{
-question:"Segundo Gênesis, quem criou os céus e a terra?",
-options:["Os seres humanos","Deus","Os animais"],
-answer:1
-},
-
-family:[
-"Qual parte da criação de Deus você mais admira?",
-"Como podemos cuidar melhor da criação?",
-"O que esta passagem nos ensina sobre Deus?"
-],
-
-prayer:`
-Deus, obrigado por tudo o que criaste.
-Ajuda-me a reconhecer a Tua grandeza,
-a cuidar da criação e a viver com gratidão.
-Amém.
-`
-},
-
-{
-number:2,
-icon:"🌈",
-title:"Noé e a Arca",
-reference:"Gênesis 6 a 9",
-
-history:"A Bíblia registra que Deus orientou Noé a construir uma arca. Noé obedeceu às instruções recebidas. A narrativa apresenta o dilúvio, a preservação de Noé e de sua família e a aliança estabelecida posteriormente.",
-
-message:"A passagem nos convida a refletir sobre a importância de ouvir e obedecer a Deus.",
-
-god:[
-["⚖️ Deus é justo.","A narrativa apresenta o julgamento de Deus diante da corrupção humana."],
-["🙏 Deus fala e orienta.","Noé recebeu instruções específicas."],
-["🌈 Deus é fiel.","A aliança apresentada após o dilúvio aponta para a fidelidade de Deus."]
-],
-
-activity:"Converse com sua família sobre o significado do arco-íris na narrativa bíblica.",
-
-quiz:{
-question:"Quem recebeu de Deus a orientação para construir a arca?",
-options:["Abraão","Noé","Davi"],
-answer:1
-},
-
-family:[
-"O que aprendemos sobre obediência?",
-"Por que é importante conhecer a Palavra de Deus?",
-"O que esta passagem nos ensina sobre Deus?"
-],
-
-prayer:"Deus, ajuda-nos a ouvir os Teus ensinamentos e a viver de acordo com a Tua Palavra. Amém."
-},
-
-{
-number:3,
-icon:"⭐",
-title:"Abraão e a Promessa",
-reference:"Gênesis 12, 15 e 17",
-
-history:"Deus chamou Abraão e estabeleceu promessas relacionadas à sua descendência. A jornada de Abraão envolveu confiança e fé nas promessas de Deus.",
-
-message:"A passagem mostra uma caminhada marcada pela confiança nas promessas de Deus.",
-
-god:[
-["✨ Deus chama e conduz.","Abraão recebeu um chamado de Deus."],
-["🤝 Deus estabelece promessas.","A narrativa apresenta a aliança de Deus."],
-["🙏 Deus é fiel.","As Escrituras apresentam Deus cumprindo Seus propósitos."]
-],
-
-activity:"Converse com sua família sobre a importância de confiar em Deus durante os momentos de espera.",
-
-quiz:{
-question:"Quem foi chamado por Deus para iniciar uma grande jornada?",
-options:["Abraão","Daniel","Jonas"],
-answer:0
-},
-
-family:[
-"O que significa confiar em Deus?",
-"Por que algumas coisas exigem paciência?",
-"O que aprendemos sobre Deus nesta passagem?"
-],
-
-prayer:"Deus, ajuda-nos a confiar em Ti e a caminhar segundo a Tua vontade. Amém."
-},
-
-{
-number:4,
-icon:"🌈",
-title:"José e seus Sonhos",
-reference:"Gênesis 37 a 50",
-
-history:"José viveu acontecimentos difíceis desde jovem. A narrativa bíblica acompanha sua jornada e mostra como, ao longo do tempo, ele foi colocado em uma posição importante no Egito.",
-
-message:"A história de José nos mostra que Deus continua presente mesmo quando enfrentamos situações difíceis.",
-
-god:[
-["🙏 Deus está presente.","A narrativa acompanha José durante diferentes momentos de sua vida."],
-["✨ Deus tem poder para realizar Seus propósitos.","A história mostra acontecimentos que se desenvolvem ao longo do tempo."],
-["❤️ Deus pode transformar situações.","A narrativa conduz José a uma posição em que ele ajuda muitas pessoas."]
-],
-
-activity:"Converse sobre perdão e escreva uma atitude de paz que você pode praticar.",
-
-quiz:{
-question:"José foi levado para qual país?",
-options:["Egito","Babilônia","Israel"],
-answer:0
-},
-
-family:[
-"Como José enfrentou momentos difíceis?",
-"O que significa perdoar?",
-"O que aprendemos sobre Deus?"
-],
-
-prayer:"Deus, ajuda-nos a confiar em Ti também nos momentos difíceis. Amém."
-},
-
-{
-number:5,
-icon:"🔥",
-title:"Moisés e a Sarça Ardente",
-reference:"Êxodo 3 e 4",
-
-history:"Moisés encontrou uma sarça que ardia e não se consumia. Deus falou com ele e o chamou para uma missão relacionada à libertação do povo de Israel.",
-
-message:"A passagem apresenta o chamado de Deus e mostra que Ele conhece Seu povo.",
-
-god:[
-["🔥 Deus se revela.","Deus falou com Moisés."],
-["❤️ Deus conhece Seu povo.","A narrativa mostra Deus atento ao sofrimento dos israelitas."],
-["✨ Deus chama para cumprir Seus propósitos.","Moisés recebeu uma missão."]
-],
-
-activity:"Converse sobre talentos e maneiras de servir e ajudar outras pessoas.",
-
-quiz:{
-question:"O que Moisés viu no monte?",
-options:["Uma grande arca","Uma sarça ardente","Um grande peixe"],
-answer:1
-},
-
-family:[
-"O que Moisés sentiu diante da missão?",
-"O que aprendemos sobre o chamado de Deus?",
-"O que esta passagem revela sobre Deus?"
-],
-
-prayer:"Deus, ajuda-nos a ouvir os Teus ensinamentos e a confiar na Tua direção. Amém."
-},
-
-{
-number:6,
-icon:"🌊",
-title:"A Travessia do Mar Vermelho",
-reference:"Êxodo 14",
-
-history:"Depois de sair do Egito, o povo de Israel chegou diante do mar enquanto enfrentava uma grande ameaça. A narrativa registra a intervenção de Deus e a travessia do povo.",
-
-message:"A passagem mostra o poder de Deus e Sua ação em favor do Seu povo.",
-
-god:[
-["💪 Deus é poderoso.","A narrativa apresenta uma grande demonstração do poder de Deus."],
-["🙏 Deus age em favor do Seu povo.","Os israelitas são conduzidos durante a travessia."],
-["✨ Deus é digno de confiança.","A passagem mostra Sua ação diante de uma situação impossível aos olhos humanos."]
-],
-
-activity:"Pense em um desafio e converse com sua família sobre como buscar sabedoria e orientação.",
-
-quiz:{
-question:"Qual mar aparece na narrativa da travessia?",
-options:["Mar Vermelho","Mar Azul","Mar Grande"],
-answer:0
-},
-
-family:[
-"Como o povo se sentiu diante daquele desafio?",
-"O que aprendemos sobre confiar em Deus?",
-"O que esta passagem nos ensina sobre Deus?"
-],
-
-prayer:"Deus, ajuda-nos a confiar em Ti quando enfrentamos desafios. Amém."
-},
-
-{
-number:7,
-icon:"🪨",
-title:"Davi e Golias",
-reference:"1 Samuel 17",
-
-history:"O exército de Israel enfrentava os filisteus. Golias desafiava os israelitas, e Davi se apresentou para enfrentá-lo. A narrativa registra a vitória de Davi.",
-
-message:"A passagem mostra que a confiança não deve estar apenas na força humana.",
-
-god:[
-["💪 Deus é poderoso.","A vitória não é apresentada como resultado apenas da força humana."],
-["🙏 Deus merece confiança.","Davi demonstra confiança em Deus."],
-["✨ Deus vê além das aparências.","A história de Davi está relacionada à maneira como Deus escolhe e conduz."]
-],
-
-activity:"Converse sobre uma situação que exige coragem e ore pedindo sabedoria.",
-
-quiz:{
-question:"Quem enfrentou Golias?",
-options:["Saul","Davi","Jonas"],
-answer:1
-},
-
-family:[
-"O que significa ter coragem?",
-"Em quem Davi colocou sua confiança?",
-"O que aprendemos sobre Deus?"
-],
-
-prayer:"Deus, ajuda-nos a confiar em Ti e a agir com coragem. Amém."
-},
-
-{
-number:8,
-icon:"🦁",
-title:"Daniel na Cova dos Leões",
-reference:"Daniel 6",
-
-history:"Daniel continuou fiel a Deus mesmo diante de uma lei que o colocava em perigo. Ele foi lançado na cova dos leões, e a narrativa registra a proteção de Deus.",
-
-message:"A passagem apresenta a fidelidade de Daniel e o poder de Deus.",
-
-god:[
-["🦁 Deus é poderoso.","A narrativa registra a proteção de Daniel."],
-["🙏 Deus merece fidelidade.","Daniel permaneceu firme em sua prática de oração."],
-["✨ Deus age segundo Seu poder.","O acontecimento revela a grandeza de Deus."]
-],
-
-activity:"Pense em uma atitude correta que você deve praticar mesmo quando ninguém está olhando.",
-
-quiz:{
-question:"Onde Daniel foi colocado?",
-options:["Em uma arca","Em uma cova com leões","Em um palácio"],
-answer:1
-},
-
-family:[
-"Por que Daniel continuou orando?",
-"O que significa ser fiel?",
-"O que aprendemos sobre Deus?"
-],
-
-prayer:"Deus, ajuda-nos a permanecer firmes na fé e a confiar em Ti. Amém."
-},
-
-{
-number:9,
-icon:"🔥",
-title:"Os Três Amigos e a Fornalha",
-reference:"Daniel 3",
-
-history:"Três jovens hebreus recusaram adorar a imagem estabelecida pelo rei. Eles foram lançados em uma fornalha, e a narrativa bíblica registra a intervenção de Deus.",
-
-message:"A passagem apresenta pessoas que permaneceram firmes em sua fidelidade a Deus.",
-
-god:[
-["🔥 Deus é poderoso.","A narrativa mostra Seu poder diante da fornalha."],
-["🙏 Deus é digno de adoração.","Os jovens recusaram abandonar sua fidelidade."],
-["✨ Deus está acima dos poderes humanos.","A passagem revela Sua soberania."]
-],
-
-activity:"Converse sobre a importância de permanecer firme naquilo que a Palavra de Deus ensina.",
-
-quiz:{
-question:"Onde os três amigos foram lançados?",
-options:["Em uma cova","Em uma fornalha","No mar"],
-answer:1
-},
-
-family:[
-"Por que os amigos permaneceram firmes?",
-"O que significa adorar somente a Deus?",
-"O que aprendemos sobre Deus?"
-],
-
-prayer:"Deus, ajuda-nos a permanecer fiéis a Ti e à Tua Palavra. Amém."
-},
-
-{
-number:10,
-icon:"👑",
-title:"Ester",
-reference:"Ester 4 a 7",
-
-history:"Ester ocupava uma posição importante como rainha. Em um momento decisivo, ela se apresentou diante do rei em favor de seu povo.",
-
-message:"A narrativa apresenta coragem, responsabilidade e acontecimentos importantes para a preservação do povo judeu.",
-
-god:[
-["✨ Deus conduz a história.","A narrativa mostra acontecimentos que se desenvolvem de maneira significativa."],
-["🙏 Devemos buscar sabedoria.","Ester enfrentou uma decisão importante."],
-["❤️ A vida pode ser usada para fazer o bem.","Ester agiu diante de uma necessidade."]
-],
-
-activity:"Faça uma boa ação por alguém sem esperar recompensa.",
-
-quiz:{
-question:"Qual posição Ester ocupava?",
-options:["Rainha","Professora","Pastora de ovelhas"],
-answer:0
-},
-
-family:[
-"Por que Ester precisou ter coragem?",
-"Como podemos usar nossas oportunidades para fazer o bem?",
-"O que aprendemos nesta passagem?"
-],
-
-prayer:"Deus, concede-nos sabedoria e coragem para agir corretamente. Amém."
-},
-
-{
-number:11,
-icon:"🐋",
-title:"Jonas e o Grande Peixe",
-reference:"Jonas 1 a 4",
-
-history:"Jonas recebeu uma missão, mas tentou fugir. A narrativa registra sua viagem, a tempestade, o grande peixe e a continuação de sua missão.",
-
-message:"A história mostra que não podemos fugir de Deus e apresenta aspectos importantes da misericórdia divina.",
-
-god:[
-["🌎 Deus tem autoridade sobre toda a criação.","A narrativa apresenta Seu poder sobre os acontecimentos."],
-["❤️ Deus é misericordioso.","A mensagem do livro apresenta a misericórdia de Deus."],
-["🙏 Devemos ouvir a orientação de Deus.","Jonas recebeu uma missão."]
-],
-
-activity:"Pense em algo que você precisa fazer corretamente e converse com um adulto de confiança.",
-
-quiz:{
-question:"Quem foi engolido por um grande peixe?",
-options:["Daniel","Jonas","Davi"],
-answer:1
-},
-
-family:[
-"Por que Jonas tentou fugir?",
-"O que aprendemos sobre a misericórdia de Deus?",
-"O que esta passagem revela sobre Deus?"
-],
-
-prayer:"Deus, ajuda-nos a ouvir os Teus ensinamentos e a compreender a Tua misericórdia. Amém."
-},
-
-{
-number:12,
-icon:"🌾",
-title:"Rute e a História de Fidelidade",
-reference:"Rute 1 a 4",
-
-history:"Rute viveu uma história marcada por mudanças e dificuldades. Ela demonstrou lealdade e permaneceu ao lado de Noemi.",
-
-message:"O livro de Rute apresenta fidelidade, cuidado e acontecimentos importantes na história do povo de Deus.",
-
-god:[
-["❤️ Deus cuida.","A narrativa apresenta cuidado e provisão ao longo da história."],
-["✨ Deus conduz acontecimentos.","O livro mostra como acontecimentos individuais fazem parte de uma história maior."],
-["🙏 A fidelidade tem importância.","Rute demonstra lealdade em suas atitudes."]
-],
-
-activity:"Demonstre cuidado e carinho por alguém importante para você.",
-
-quiz:{
-question:"Com quem Rute demonstrou lealdade?",
-options:["Noemi","Golias","Faraó"],
-answer:0
-},
-
-family:[
-"O que significa ser leal?",
-"Como podemos demonstrar cuidado dentro da família?",
-"O que aprendemos sobre Deus?"
-],
-
-prayer:"Deus, ajuda-nos a demonstrar amor, fidelidade e cuidado pelas pessoas. Amém."
-}
-
-];
-
-
-/* =========================================
-ESTADO DO APLICATIVO
-========================================= */
-
-let currentStory = null;
-
-let appState = JSON.parse(
-    localStorage.getItem("jornadaBibliaData")
-) || {
-    completedStories:[],
-    activities:0,
-    prayers:0,
-    family:0
 };
 
 
-/* =========================================
-INICIAR
-========================================= */
+function openSection(name){
+
+  const data = content[name];
+
+  document.getElementById("modalTitle").textContent = name;
+
+  document.getElementById("modalText").textContent = data.text;
+
+  document.getElementById("modalChoices").innerHTML = data.choices
+    .map(x => 
+      `<button class="choice" onclick="choose('${x.replace(/'/g,"\\'")}')">${x}</button>`
+    )
+    .join("");
+
+  document.getElementById("modal").classList.add("show");
+
+}
+
+
+function choose(item){
+
+  document.getElementById("modalTitle").textContent = item;
+
+  document.getElementById("modalText").textContent =
+    "Esta área está preparada para receber o conteúdo completo da Jornada pela Bíblia. 🌟 Em breve, esta escolha abrirá uma experiência interativa especial!";
+
+  document.getElementById("modalChoices").innerHTML =
+    '<button class="choice" onclick="closeModal()">💛 Voltar para a Jornada</button>';
+
+}
+
 
 function startJourney(){
 
-    document.getElementById("bottomNav")
-        .classList.remove("hidden");
+  document.getElementById("lesson").scrollIntoView({
+    behavior:"smooth",
+    block:"center"
+  });
 
-    showScreen("homeScreen");
-
-}
-
-
-/* =========================================
-TROCAR TELAS
-========================================= */
-
-function showScreen(id){
-
-    document.querySelectorAll(".screen")
-        .forEach(screen=>{
-            screen.classList.remove("active");
-        });
-
-    document.getElementById(id)
-        .classList.add("active");
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-
-    if(id === "journeyScreen"){
-        updateJourney();
-    }
+  setTimeout(() => showMessage(), 500);
 
 }
 
 
-/* =========================================
-NAVEGAÇÃO
-========================================= */
+function showMessage(){
 
-function clearNav(){
+  document.getElementById("modalTitle").textContent = "✨ Sua missão começou!";
 
-    document.querySelectorAll(".nav-item")
-        .forEach(item=>{
-            item.classList.remove("active");
-        });
+  document.getElementById("modalText").textContent =
+    "Hoje, lembre-se: Deus conhece você pelo nome e cuida de você com muito amor. Agora pense em uma coisa pela qual você pode agradecer. 🙏💛";
 
-}
+  document.getElementById("modalChoices").innerHTML =
+    '<button class="choice" onclick="closeModal()">🙏 Entendi! Vou guardar essa mensagem</button>';
 
-function goHome(el){
-
-    clearNav();
-    el.classList.add("active");
-
-    showScreen("homeScreen");
-
-}
-
-function goStories(el){
-
-    clearNav();
-    el.classList.add("active");
-
-    showScreen("storiesScreen");
-
-}
-
-function goActivities(el){
-
-    clearNav();
-    el.classList.add("active");
-
-    showScreen("activitiesScreen");
-
-}
-
-function goJourney(el){
-
-    clearNav();
-    el.classList.add("active");
-
-    showScreen("journeyScreen");
-
-}
-
-function goFamily(el){
-
-    clearNav();
-    el.classList.add("active");
-
-    showScreen("familyScreen");
+  document.getElementById("modal").classList.add("show");
 
 }
 
 
-/* =========================================
-CRIAR LISTA
-========================================= */
+function closeModal(){
 
-function renderStories(){
-
-    const list =
-        document.getElementById("storyList");
-
-    list.innerHTML = "";
-
-    stories.forEach(story=>{
-
-        const completed =
-            appState.completedStories.includes(story.number);
-
-        const button =
-        document.createElement("button");
-
-        button.className = "story-card";
-
-        button.innerHTML = `
-            <div class="story-number">
-                ${completed ? "✓" : story.number}
-            </div>
-
-            <div class="story-info">
-                <h3>${story.icon} ${story.title}</h3>
-
-                <p>${story.reference}</p>
-            </div>
-
-            <div class="arrow">›</div>
-        `;
-
-        button.onclick =
-            ()=>openStory(story.number);
-
-        list.appendChild(button);
-
-    });
+  document.getElementById("modal").classList.remove("show");
 
 }
 
 
-/* =========================================
-ABRIR HISTÓRIA
-========================================= */
+function closeOutside(e){
 
-function openStory(number){
-
-    currentStory =
-        stories.find(
-            story=>story.number === number
-        );
-
-    document.getElementById("storyIcon")
-        .textContent = currentStory.icon;
-
-    document.getElementById("storyTitle")
-        .textContent = currentStory.title;
-
-    document.getElementById("storyReference")
-        .textContent =
-        "📖 " + currentStory.reference;
-
-    document.getElementById("historyReference")
-        .textContent =
-        currentStory.reference;
-
-    document.getElementById("historyText")
-        .textContent =
-        currentStory.history;
-
-    document.getElementById("messageText")
-        .textContent =
-        currentStory.message;
-
-    document.getElementById("activityText")
-        .textContent =
-        currentStory.activity;
-
-    document.getElementById("quizQuestion")
-        .textContent =
-        currentStory.quiz.question;
-
-    document.getElementById("prayerText")
-        .textContent =
-        currentStory.prayer;
-
-
-    renderGodContent();
-
-    renderQuiz();
-
-    renderFamilyQuestions();
-
-    showStoryTab(
-        "history",
-        document.querySelector(".tab")
-    );
-
-    showScreen("storyDetailScreen");
+  if(e.target.id === "modal"){
+    closeModal();
+  }
 
 }
-
-
-/* =========================================
-SOBRE DEUS
-========================================= */
-
-function renderGodContent(){
-
-    const container =
-        document.getElementById("godContent");
-
-    container.innerHTML = "";
-
-    currentStory.god.forEach(item=>{
-
-        const div =
-        document.createElement("div");
-
-        div.className = "god-point";
-
-        div.innerHTML = `
-            <strong>${item[0]}</strong>
-            <br>
-            <small>${item[1]}</small>
-        `;
-
-        container.appendChild(div);
-
-    });
-
-}
-
-
-/* =========================================
-QUIZ
-========================================= */
-
-function renderQuiz(){
-
-    const container =
-        document.getElementById("quizOptions");
-
-    container.innerHTML = "";
-
-    currentStory.quiz.options
-        .forEach((option,index)=>{
-
-        const button =
-        document.createElement("button");
-
-        button.className = "quiz-option";
-
-        button.textContent = option;
-
-        button.onclick = ()=>{
-
-            document
-                .querySelectorAll(".quiz-option")
-                .forEach(btn=>{
-                    btn.disabled = true;
-                });
-
-            if(index === currentStory.quiz.answer){
-
-                button.classList.add("correct");
-
-                setTimeout(()=>{
-                    alert("🎉 Muito bem!");
-                },150);
-
-            }else{
-
-                button.classList.add("wrong");
-
-                document
-                    .querySelectorAll(".quiz-option")
-                    [currentStory.quiz.answer]
-                    .classList.add("correct");
-
-            }
-
-        };
-
-        container.appendChild(button);
-
-    });
-
-}
-
-
-/* =========================================
-FAMÍLIA
-========================================= */
-
-function renderFamilyQuestions(){
-
-    const container =
-        document.getElementById("familyQuestions");
-
-    container.innerHTML = "";
-
-    currentStory.family.forEach(
-        (question,index)=>{
-
-        const div =
-        document.createElement("div");
-
-        div.className = "question";
-
-        div.innerHTML =
-        `<strong>${index+1}.</strong> ${question}`;
-
-        container.appendChild(div);
-
-    });
-
-}
-
-
-/* =========================================
-ABAS
-========================================= */
-
-function showStoryTab(tab,button){
-
-    const tabs = [
-        "history",
-        "god",
-        "activity",
-        "family",
-        "prayer"
-    ];
-
-    tabs.forEach(name=>{
-
-        document
-            .getElementById(name+"Tab")
-            .classList.add("hidden");
-
-    });
-
-    document
-        .getElementById(tab+"Tab")
-        .classList.remove("hidden");
-
-    document.querySelectorAll(".tab")
-        .forEach(item=>{
-            item.classList.remove("active");
-        });
-
-    if(button){
-        button.classList.add("active");
-    }
-
-}
-
-
-/* =========================================
-CONCLUIR HISTÓRIA
-========================================= */
-
-function completeStory(){
-
-    if(
-        !appState.completedStories
-            .includes(currentStory.number)
-    ){
-
-        appState.completedStories
-            .push(currentStory.number);
-
-        saveState();
-
-        renderStories();
-
-        alert(
-            "🎉 Parabéns! Você concluiu esta etapa da sua Jornada!"
-        );
-
-    }else{
-
-        alert(
-            "📖 Esta história já faz parte da sua jornada!"
-        );
-
-    }
-
-}
-
-
-/* =========================================
-SALVAR ORAÇÃO
-========================================= */
-
-function savePrayer(){
-
-    const prayer =
-        document.getElementById("personalPrayer")
-            .value;
-
-    if(prayer.trim() === ""){
-
-        alert(
-            "🙏 Escreva primeiro aquilo que deseja conversar com Deus."
-        );
-
-        return;
-
-    }
-
-    appState.prayers++;
-
-    localStorage.setItem(
-        "jornadaBibliaPrayer",
-        prayer
-    );
-
-    saveState();
-
-    alert(
-        "🙏 Seu momento de oração foi registrado."
-    );
-
-}
-
-
-/* =========================================
-GRATIDÃO
-========================================= */
-
-function saveGratitude(){
-
-    const text =
-        document.getElementById("gratitudeText")
-            .value;
-
-    if(text.trim() === ""){
-
-        alert(
-            "💛 Escreva algo pelo qual você é grato."
-        );
-
-        return;
-
-    }
-
-    localStorage.setItem(
-        "jornadaBibliaGratitude",
-        text
-    );
-
-    appState.activities++;
-
-    saveState();
-
-    alert(
-        "💛 Sua gratidão foi salva!"
-    );
-
-}
-
-
-/* =========================================
-ATIVIDADES
-========================================= */
-
-function saveActivities(){
-
-    const checked =
-        document.querySelectorAll(
-            ".missionCheck:checked"
-        ).length;
-
-    if(checked === 0){
-
-        alert(
-            "🧩 Escolha pelo menos uma atividade."
-        );
-
-        return;
-
-    }
-
-    appState.activities++;
-
-    saveState();
-
-    alert(
-        "🎉 Atividades registradas!"
-    );
-
-}
-
-
-/* =========================================
-FAMÍLIA
-========================================= */
-
-function completeFamily(){
-
-    appState.family++;
-
-    saveState();
-
-    alert(
-        "❤️ Que momento especial! A Palavra de Deus compartilhada em família é uma grande bênção."
-    );
-
-}
-
-
-/* =========================================
-SALVAR
-========================================= */
-
-function saveState(){
-
-    localStorage.setItem(
-        "jornadaBibliaData",
-        JSON.stringify(appState)
-    );
-
-}
-
-
-/* =========================================
-ATUALIZAR JORNADA
-========================================= */
-
-function updateJourney(){
-
-    const completed =
-        appState.completedStories.length;
-
-    const percentage =
-        Math.round(
-            completed / stories.length * 100
-        );
-
-    document.getElementById("storiesCompleted")
-        .textContent = completed;
-
-    document.getElementById("activitiesCompleted")
-        .textContent = appState.activities;
-
-    document.getElementById("prayersCompleted")
-        .textContent = appState.prayers;
-
-    document.getElementById("familyCompleted")
-        .textContent = appState.family;
-
-    document.getElementById("progressFill")
-        .style.width = percentage + "%";
-
-    document.getElementById("progressText")
-        .textContent =
-        `${completed} de ${stories.length} histórias concluídas`;
-
-
-    let level = "Iniciante";
-
-    if(completed >= 3)
-        level = "Explorador";
-
-    if(completed >= 6)
-        level = "Descobridor";
-
-    if(completed >= 9)
-        level = "Aprendiz da Palavra";
-
-    if(completed === 12)
-        level = "Crescendo na Fé";
-
-    document.getElementById("levelText")
-        .textContent =
-        "Nível: " + level;
-
-
-    renderAchievements(completed);
-
-}
-
-
-/* =========================================
-CONQUISTAS
-========================================= */
-
-function renderAchievements(completed){
-
-    const achievements = [
-
-        {
-            icon:"📖",
-            title:"Primeira História",
-            unlocked:completed >= 1
-        },
-
-        {
-            icon:"🌍",
-            title:"Explorador da Criação",
-            unlocked:
-                appState.completedStories.includes(1)
-        },
-
-        {
-            icon:"🙏",
-            title:"Momento de Oração",
-            unlocked:appState.prayers >= 1
-        },
-
-        {
-            icon:"👨‍👩‍👧",
-            title:"Jornada em Família",
-            unlocked:appState.family >= 1
-        },
-
-        {
-            icon:"⭐",
-            title:"Explorador da Palavra",
-            unlocked:completed >= 12
-        }
-
-    ];
-
-    const container =
-        document.getElementById("achievements");
-
-    container.innerHTML = "";
-
-    achievements.forEach(item=>{
-
-        const div =
-        document.createElement("div");
-
-        div.className =
-        "achievement" +
-        (item.unlocked ? " unlocked":"");
-
-        div.innerHTML = `
-            <strong>${item.icon} ${item.title}</strong>
-            <br>
-            <small>
-                ${item.unlocked
-                ? "Conquista alcançada! 🎉"
-                : "Continue sua jornada."}
-            </small>
-        `;
-
-        container.appendChild(div);
-
-    });
-
-}
-
-
-/* =========================================
-CERTIFICADO
-========================================= */
-
-function openCertificate(){
-
-    showScreen("certificateScreen");
-
-}
-
-function updateCertificateName(){
-
-    const name =
-        document.getElementById("childName")
-            .value;
-
-    document.getElementById("certificateName")
-        .textContent =
-        name || "Explorador da Palavra";
-
-}
-
-
-/* =========================================
-INICIALIZAÇÃO
-========================================= */
-
-renderStories();
 
 </script>
 
