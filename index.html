@@ -1,2453 +1,1248 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-
 <meta charset="UTF-8">
 
 <meta name="viewport"
 content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-<meta name="theme-color" content="#19558f">
+<meta name="theme-color" content="#1f5f99">
 
-<!-- CONFIGURAÇÃO PARA IPHONE -->
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Jornada pela Bíblia">
 
-<meta name="apple-mobile-web-app-status-bar-style"
-content="default">
-
-<meta name="apple-mobile-web-app-title"
-content="Jornada pela Bíblia">
-
-<!-- ÍCONE DO APP -->
 <link rel="apple-touch-icon" href="icone-jornada.png">
-
-<link rel="icon" type="image/png"
-href="icone-jornada.png">
+<link rel="icon" type="image/png" href="icone-jornada.png">
 
 <title>Jornada pela Bíblia</title>
 
-
 <style>
 
-/* =====================================================
-   JORNADA PELA BÍBLIA
-   ===================================================== */
-
-:root{
-
---blue:#19558f;
---blue-light:#2877bd;
---blue-soft:#e8f3ff;
-
---gold:#b06b12;
-
---ink:#173b63;
-
---cream:#fffdf7;
-
---white:#ffffff;
-
---shadow:
-0 14px 35px rgba(26,73,112,.16);
-
-}
-
-
 *{
-
 box-sizing:border-box;
-
+-webkit-tap-highlight-color:transparent;
 }
 
-
-html{
-
-scroll-behavior:smooth;
-
+html,body{
+margin:0;
+padding:0;
+min-height:100%;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+background:#edf7ff;
+color:#173b63;
 }
-
 
 body{
-
-margin:0;
-
-font-family:
-
--apple-system,
-BlinkMacSystemFont,
-"Segoe UI",
-Roboto,
-Arial,
-sans-serif;
-
-color:var(--ink);
-
-background:
-
-linear-gradient(
-180deg,
-#d9efff 0%,
-#fff9e8 55%,
-#e8f4ff 100%
-);
-
--webkit-font-smoothing:antialiased;
-
+overflow-x:hidden;
 }
 
+/* APP */
 
-/* =====================================================
-   APP
-   ===================================================== */
-
-.app{
-
-width:100%;
-
-max-width:720px;
-
+#app{
+max-width:760px;
 margin:auto;
-
 min-height:100vh;
-
-overflow:hidden;
-
-background:
-rgba(255,255,255,.35);
-
+background:linear-gradient(180deg,#dff2ff,#fff8e8);
 }
 
+/* CABEÇALHO */
 
-/* =====================================================
-   TOPO
-   ===================================================== */
-
-.header{
-
+header{
+height:70px;
+background:#ffffff;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 18px;
+box-shadow:0 3px 15px rgba(0,0,0,.10);
 position:sticky;
-
 top:0;
-
 z-index:100;
-
-display:flex;
-
-align-items:center;
-
-justify-content:space-between;
-
-padding:
-
-14px 16px;
-
-background:
-
-rgba(255,255,255,.96);
-
-backdrop-filter:
-
-blur(10px);
-
-box-shadow:
-
-0 4px 18px
-rgba(0,0,0,.08);
-
 }
 
-
-.logo-mini{
-
-display:flex;
-
-align-items:center;
-
-gap:10px;
-
+.brand{
+font-size:19px;
 font-weight:800;
-
-color:var(--blue);
-
-font-size:17px;
-
+color:#19558f;
+display:flex;
+align-items:center;
+gap:8px;
 }
 
-
-.logo-book{
-
-font-size:26px;
-
-}
-
-
-/* =====================================================
-   MENU HAMBÚRGUER
-   ===================================================== */
-
-.menu-button{
-
-border:0;
-
-width:48px;
-
-height:48px;
-
-border-radius:15px;
-
-background:
-
-var(--blue);
-
+.menu-btn{
+border:none;
+background:#19558f;
 color:white;
-
-font-size:26px;
-
-font-weight:bold;
-
+font-size:27px;
+width:48px;
+height:48px;
+border-radius:14px;
 cursor:pointer;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
 }
 
+/* TELAS */
 
-.menu{
-
-position:fixed;
-
-top:0;
-
-left:-100%;
-
-width:min(360px,88%);
-
-height:100vh;
-
-background:white;
-
-z-index:1000;
-
-padding:
-
-calc(25px + env(safe-area-inset-top))
-24px
-30px;
-
-box-shadow:
-
-12px 0 40px
-rgba(0,0,0,.25);
-
-transition:
-
-left .3s ease;
-
-overflow-y:auto;
-
-}
-
-
-.menu.show{
-
-left:0;
-
-}
-
-
-.menu-header{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-margin-bottom:30px;
-
-}
-
-
-.menu-header h2{
-
-margin:0;
-
-color:var(--blue);
-
-}
-
-
-.close-menu{
-
-border:0;
-
-background:#edf4fa;
-
-width:42px;
-
-height:42px;
-
-border-radius:50%;
-
-font-size:25px;
-
-color:var(--blue);
-
-cursor:pointer;
-
-}
-
-
-.menu-item{
-
-display:block;
-
-width:100%;
-
-border:0;
-
-background:#f5f9fc;
-
-padding:17px;
-
-border-radius:18px;
-
-margin-bottom:12px;
-
-text-align:left;
-
-font-size:16px;
-
-font-weight:700;
-
-color:var(--ink);
-
-cursor:pointer;
-
-}
-
-
-/* FUNDO ESCURO DO MENU */
-
-.overlay{
-
+.screen{
 display:none;
-
-position:fixed;
-
-inset:0;
-
-background:
-
-rgba(0,0,0,.45);
-
-z-index:900;
-
+min-height:calc(100vh - 70px);
+padding-bottom:30px;
 }
 
-
-.overlay.show{
-
+.screen.active{
 display:block;
-
 }
 
-
-/* =====================================================
-   CAPA
-   ===================================================== */
-
-.hero{
-
-position:relative;
-
-line-height:0;
-
-background:#cfe9fa;
-
-}
-
+/* CAPA */
 
 .hero img{
-
-display:block;
-
 width:100%;
-
-height:auto;
-
+display:block;
 }
 
-
-/* =====================================================
-   CONTEÚDO
-   ===================================================== */
-
-.content{
-
-padding:
-
-20px 16px
-
-calc(
-35px +
-env(safe-area-inset-bottom)
-);
-
+.home-content{
+padding:18px;
 }
-
 
 .welcome{
-
-background:
-
-rgba(255,255,255,.94);
-
-border-radius:28px;
-
+background:white;
 padding:22px;
-
-box-shadow:var(--shadow);
-
-margin-bottom:22px;
-
+border-radius:24px;
+box-shadow:0 8px 25px rgba(0,0,0,.10);
+margin-bottom:20px;
 }
 
-
-.welcome h2{
-
-margin:
-
-0 0 10px;
-
-font-size:25px;
-
+.welcome h1{
+margin:0 0 10px;
+font-size:26px;
+color:#19558f;
 }
-
 
 .welcome p{
-
-margin:0;
-
-color:#48627b;
-
 line-height:1.6;
-
-font-size:16px;
-
-}
-
-
-.section-title{
-
-margin:
-
-28px 4px 15px;
-
-font-size:24px;
-
-}
-
-
-/* =====================================================
-   CARDS
-   ===================================================== */
-
-.grid{
-
-display:grid;
-
-grid-template-columns:
-
-1fr 1fr;
-
-gap:14px;
-
-}
-
-
-.feature{
-
-border:0;
-
-text-align:left;
-
-padding:18px;
-
-min-height:165px;
-
-border-radius:24px;
-
-background:
-
-rgba(255,255,255,.96);
-
-box-shadow:
-
-0 9px 24px
-
-rgba(32,79,116,.12);
-
-color:var(--ink);
-
-cursor:pointer;
-
-}
-
-
-.feature:active{
-
-transform:
-
-scale(.97);
-
-}
-
-
-.feature .icon{
-
-font-size:36px;
-
-display:block;
-
-margin-bottom:10px;
-
-}
-
-
-.feature strong{
-
-display:block;
-
-font-size:18px;
-
-margin-bottom:7px;
-
-}
-
-
-.feature span{
-
-font-size:14px;
-
-color:#587087;
-
-line-height:1.4;
-
-}
-
-
-/* =====================================================
-   BOTÃO PRINCIPAL
-   ===================================================== */
-
-.journey{
-
-margin-top:25px;
-
-background:
-
-linear-gradient(
-
-135deg,
-
-#1e77bd,
-
-#164f88
-
-);
-
-color:white;
-
-border-radius:30px;
-
-padding:25px 22px;
-
-box-shadow:var(--shadow);
-
-}
-
-
-.journey h2{
-
-margin:
-
-0 0 8px;
-
-font-size:25px;
-
-}
-
-
-.journey p{
-
-line-height:1.55;
-
-margin:
-
-0 0 18px;
-
-}
-
-
-.primary{
-
-width:100%;
-
-border:0;
-
-border-radius:18px;
-
-padding:18px;
-
-background:white;
-
-color:var(--blue);
-
-font-size:18px;
-
-font-weight:800;
-
-cursor:pointer;
-
-}
-
-
-/* =====================================================
-   MISSÃO
-   ===================================================== */
-
-.lesson{
-
-margin-top:25px;
-
-background:
-
-var(--cream);
-
-border-radius:28px;
-
-padding:22px;
-
-box-shadow:var(--shadow);
-
-}
-
-
-.badge{
-
-display:inline-block;
-
-background:#fff0c8;
-
-color:#92600e;
-
-border-radius:99px;
-
-padding:7px 12px;
-
-font-weight:700;
-
-font-size:13px;
-
-}
-
-
-.lesson h3{
-
-font-size:23px;
-
-margin:
-
-14px 0 10px;
-
-}
-
-
-.lesson p{
-
 color:#526b80;
-
-line-height:1.6;
-
 }
 
+/* BOTÕES PRINCIPAIS */
 
-.secondary{
-
-border:0;
-
-border-radius:16px;
-
-padding:15px 18px;
-
-background:
-
-var(--blue-soft);
-
-color:var(--blue);
-
-font-weight:800;
-
-font-size:16px;
-
-cursor:pointer;
-
+.quick-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px;
 }
 
-
-/* =====================================================
-   FOOTER
-   ===================================================== */
-
-.footer{
-
-text-align:center;
-
-padding:
-
-30px 18px 15px;
-
-color:#365d7d;
-
-font-style:italic;
-
-line-height:1.6;
-
-}
-
-
-.footer small{
-
-display:block;
-
-margin-top:10px;
-
-font-style:normal;
-
-letter-spacing:1px;
-
-font-weight:800;
-
-}
-
-
-/* =====================================================
-   PÁGINAS
-   ===================================================== */
-
-.page{
-
-display:none;
-
-animation:
-
-fade .25s ease;
-
-}
-
-
-.page.active{
-
-display:block;
-
-}
-
-
-@keyframes fade{
-
-from{
-
-opacity:0;
-
-transform:
-
-translateY(10px);
-
-}
-
-to{
-
-opacity:1;
-
-transform:
-
-translateY(0);
-
-}
-
-}
-
-
-/* =====================================================
-   LISTA DE LIÇÕES
-   ===================================================== */
-
-.lesson-card{
-
+.quick-btn{
+border:none;
 background:white;
-
 border-radius:22px;
-
-padding:20px;
-
-margin-bottom:15px;
-
-box-shadow:
-
-0 8px 22px
-
-rgba(32,79,116,.10);
-
-}
-
-
-.lesson-card h3{
-
-margin:
-
-0 0 8px;
-
-color:var(--blue);
-
-}
-
-
-.lesson-card p{
-
-color:#587087;
-
-line-height:1.55;
-
-}
-
-
-.lesson-button{
-
-border:0;
-
-background:var(--blue);
-
-color:white;
-
-padding:13px 18px;
-
-border-radius:15px;
-
-font-weight:800;
-
-font-size:15px;
-
+padding:20px 14px;
+min-height:150px;
+box-shadow:0 8px 22px rgba(0,0,0,.10);
 cursor:pointer;
-
+text-align:center;
+color:#173b63;
 }
 
-
-/* =====================================================
-   LEITURA
-   ===================================================== */
-
-.reading{
-
-background:white;
-
-border-radius:25px;
-
-padding:24px;
-
-box-shadow:var(--shadow);
-
-line-height:1.75;
-
-color:#334f68;
-
+.quick-btn:active{
+transform:scale(.96);
 }
 
-
-.reading h2{
-
-color:var(--blue);
-
+.quick-icon{
+font-size:42px;
+display:block;
+margin-bottom:10px;
 }
 
-
-.back-button{
-
-border:0;
-
-background:#edf4fa;
-
-color:var(--blue);
-
-padding:13px 17px;
-
-border-radius:15px;
-
-font-weight:800;
-
-margin-bottom:20px;
-
-cursor:pointer;
-
-}
-
-
-/* =====================================================
-   BÍBLIA
-   ===================================================== */
-
-.bible-box{
-
-background:
-
-linear-gradient(
-
-135deg,
-
-#fff7df,
-
-#ffffff
-
-);
-
-border-radius:28px;
-
-padding:25px;
-
-box-shadow:var(--shadow);
-
-margin-bottom:20px;
-
-}
-
-
-.bible-box h2{
-
-color:#8b5a12;
-
-}
-
-
-.bible-button{
-
-width:100%;
-
-border:0;
-
-border-radius:18px;
-
-padding:18px;
-
-margin-top:12px;
-
-background:#8b5a12;
-
-color:white;
-
+.quick-btn strong{
+display:block;
 font-size:17px;
-
-font-weight:800;
-
-cursor:pointer;
-
+margin-bottom:7px;
 }
 
+.quick-btn small{
+font-size:13px;
+color:#61778b;
+}
 
-/* =====================================================
-   RESPONSIVO
-   ===================================================== */
+/* BOTÃO COMEÇAR */
 
-@media(min-width:650px){
+.start-box{
+margin-top:20px;
+background:linear-gradient(135deg,#277bc2,#164f88);
+padding:24px;
+border-radius:26px;
+color:white;
+box-shadow:0 10px 25px rgba(20,80,130,.25);
+}
+
+.start-box h2{
+margin-top:0;
+}
+
+.big-button{
+width:100%;
+border:none;
+background:white;
+color:#19558f;
+font-size:18px;
+font-weight:800;
+padding:17px;
+border-radius:18px;
+cursor:pointer;
+}
+
+/* CONTEÚDO */
 
 .content{
+padding:20px 16px;
+}
 
+.page-title{
+font-size:27px;
+color:#19558f;
+margin:10px 0 20px;
+}
+
+/* VOLTAR */
+
+.back{
+border:none;
+background:#e7f2fb;
+color:#19558f;
+font-weight:800;
+padding:13px 17px;
+border-radius:15px;
+font-size:15px;
+cursor:pointer;
+margin-bottom:15px;
+}
+
+/* CARDS */
+
+.card{
+background:white;
+padding:20px;
+border-radius:22px;
+margin-bottom:16px;
+box-shadow:0 7px 20px rgba(0,0,0,.09);
+}
+
+.card h2,
+.card h3{
+margin-top:0;
+color:#19558f;
+}
+
+.card p{
+line-height:1.6;
+color:#526b80;
+}
+
+.action{
+border:none;
+background:#19558f;
+color:white;
+font-size:16px;
+font-weight:800;
+padding:14px 18px;
+border-radius:15px;
+cursor:pointer;
+}
+
+/* MENU */
+
+#overlay{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.45);
+z-index:200;
+}
+
+#overlay.show{
+display:block;
+}
+
+#sideMenu{
+position:fixed;
+left:-330px;
+top:0;
+width:310px;
+height:100%;
+background:white;
+z-index:300;
+padding:28px 20px;
+box-shadow:10px 0 30px rgba(0,0,0,.25);
+transition:left .3s ease;
+}
+
+#sideMenu.show{
+left:0;
+}
+
+.menu-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:28px;
+}
+
+.menu-top h2{
+margin:0;
+color:#19558f;
+}
+
+.close-menu{
+border:none;
+background:#e7f2fb;
+width:42px;
+height:42px;
+border-radius:50%;
+font-size:25px;
+color:#19558f;
+}
+
+.menu-link{
+width:100%;
+border:none;
+background:#f4f8fb;
+margin-bottom:10px;
+padding:17px;
+border-radius:16px;
+text-align:left;
+font-size:16px;
+font-weight:750;
+color:#173b63;
+cursor:pointer;
+}
+
+/* LIÇÃO */
+
+.lesson-header{
+background:linear-gradient(135deg,#277bc2,#164f88);
 padding:28px;
-
+color:white;
+border-radius:25px;
+margin-bottom:20px;
 }
 
-.grid{
-
-grid-template-columns:
-
-repeat(4,1fr);
-
+.lesson-header h1{
+margin:0;
+font-size:28px;
 }
 
-.feature{
+.lesson-section{
+background:white;
+border-radius:23px;
+padding:22px;
+margin-bottom:18px;
+box-shadow:0 7px 20px rgba(0,0,0,.08);
+}
 
-min-height:180px;
+.lesson-section h2{
+color:#19558f;
+margin-top:0;
+}
 
+.lesson-section p{
+line-height:1.7;
+color:#425e75;
+}
+
+/* OPÇÕES DA LIÇÃO */
+
+.lesson-actions{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:13px;
+}
+
+.lesson-action{
+border:none;
+border-radius:20px;
+padding:20px 12px;
+background:#fff;
+box-shadow:0 7px 20px rgba(0,0,0,.09);
+font-weight:800;
+color:#19558f;
+font-size:15px;
+cursor:pointer;
+}
+
+/* COLORIR */
+
+.color-tools{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+margin-bottom:15px;
+}
+
+.color{
+width:38px;
+height:38px;
+border-radius:50%;
+border:3px solid white;
+box-shadow:0 2px 6px rgba(0,0,0,.25);
+cursor:pointer;
+}
+
+#colorCanvas{
+width:100%;
+background:white;
+border:2px solid #19558f;
+border-radius:20px;
+touch-action:none;
+display:block;
+}
+
+.clear-btn{
+margin-top:15px;
+border:none;
+background:#d94c4c;
+color:white;
+padding:13px 18px;
+border-radius:14px;
+font-weight:800;
+}
+
+/* BÍBLIA */
+
+.bible-notice{
+background:#fff8e6;
+border-left:5px solid #b87918;
+padding:18px;
+border-radius:15px;
+line-height:1.6;
+color:#6d5429;
+}
+
+.bible-book{
+width:100%;
+background:white;
+border:none;
+border-radius:17px;
+padding:17px;
+margin-bottom:10px;
+text-align:left;
+font-size:17px;
+font-weight:750;
+color:#19558f;
+box-shadow:0 5px 15px rgba(0,0,0,.07);
+cursor:pointer;
+}
+
+.reference-box{
+background:#e8f4ff;
+padding:18px;
+border-radius:18px;
+margin-top:15px;
+}
+
+@media(min-width:600px){
+
+.quick-grid{
+grid-template-columns:repeat(4,1fr);
 }
 
 }
 
 </style>
-
 </head>
-
 
 <body>
 
+<div id="overlay" onclick="closeMenu()"></div>
 
-<!-- OVERLAY -->
+<nav id="sideMenu">
 
-<div
-
-class="overlay"
-
-id="overlay"
-
-onclick="closeMenu()">
-
-</div>
-
-
-
-<!-- MENU -->
-
-<nav
-
-class="menu"
-
-id="menu">
-
-
-<div class="menu-header">
-
+<div class="menu-top">
 <h2>📖 Menu</h2>
-
-<button
-
-class="close-menu"
-
-onclick="closeMenu()">
-
-×</button>
-
+<button class="close-menu" onclick="closeMenu()">×</button>
 </div>
 
+<button class="menu-link" onclick="showScreen('home')">🏠 Início</button>
 
-<button
-
-class="menu-item"
-
-onclick="goHome()">
-
-🏠 Início
-
-</button>
-
-
-<button
-
-class="menu-item"
-
-onclick="openPage('stories')">
-
+<button class="menu-link" onclick="showScreen('stories')">
 📖 Histórias Bíblicas
-
 </button>
 
+<button class="menu-link" onclick="showScreen('activities')">
+🎨 Atividades e Colorir
+</button>
 
-<button
-
-class="menu-item"
-
-onclick="openPage('learning')">
-
+<button class="menu-link" onclick="showScreen('learning')">
 💡 Aprendizado
-
 </button>
 
-
-<button
-
-class="menu-item"
-
-onclick="openPage('activities')">
-
-🌱 Atividades
-
+<button class="menu-link" onclick="showScreen('family')">
+👨‍👩‍👧 Para a Família
 </button>
 
-
-<button
-
-class="menu-item"
-
-onclick="openPage('family')">
-
-❤️ Para a Família
-
-</button>
-
-
-<button
-
-class="menu-item"
-
-onclick="openPage('bible')">
-
+<button class="menu-link" onclick="showScreen('bible')">
 📖 Bíblia Sagrada
-
 </button>
-
-
-<button
-
-class="menu-item"
-
-onclick="openPage('mission')">
-
-⭐ Missão do Dia
-
-</button>
-
 
 </nav>
 
+<div id="app">
 
+<header>
 
-<!-- APP -->
-
-<main class="app">
-
-
-<!-- CABEÇALHO -->
-
-<header class="header">
-
-
-<div class="logo-mini">
-
-<span class="logo-book">📖</span>
-
-<span>Jornada pela Bíblia</span>
-
+<div class="brand">
+📖 Jornada pela Bíblia
 </div>
 
-
-<button
-
-class="menu-button"
-
-onclick="openMenu()"
-
-aria-label="Abrir menu">
-
-☰
-
-</button>
-
+<button class="menu-btn" onclick="openMenu()">☰</button>
 
 </header>
 
 
+<!-- HOME -->
 
-<!-- =================================================
-     PÁGINA INICIAL
-================================================= -->
+<section id="home" class="screen active">
 
-<section
+<div class="hero">
+<img src="2026-09-05_Original.png"
+alt="Jornada pela Bíblia">
+</div>
 
-class="page active"
-
-id="home">
-
-
-<section class="hero">
-
-<!-- IMAGEM PRINCIPAL -->
-
-<img
-
-src="2026-09-05_Original.png"
-
-alt="Jornada pela Bíblia - crianças conhecendo a Palavra de Deus">
-
-</section>
-
-
-
-<section class="content">
-
+<div class="home-content">
 
 <div class="welcome">
 
-<h2>✨ Bem-vindo à Jornada!</h2>
+<h1>✨ Bem-vindo à Jornada!</h1>
 
 <p>
-
-Um espaço especial para crianças, famílias e educadores
-conhecerem a Palavra de Deus.
-
-</p>
-
-<p>
-
-Aqui, as explicações e atividades são sempre apresentadas
-separadamente do texto bíblico.
-
+Uma jornada especial para crianças e famílias conhecerem
+as Escrituras, aprenderem, brincarem e crescerem no conhecimento
+da Palavra de Deus.
 </p>
 
 </div>
 
+<div class="quick-grid">
 
-
-<h2 class="section-title">
-
-Explore a Jornada
-
-</h2>
-
-
-
-<div class="grid">
-
-
-<button
-
-class="feature"
-
-onclick="openPage('stories')">
-
-<span class="icon">📖</span>
-
-<strong>Histórias Bíblicas</strong>
-
-<span>
-
-Conheça grandes acontecimentos registrados na Bíblia.
-
-</span>
-
+<button class="quick-btn" onclick="showScreen('stories')">
+<span class="quick-icon">📖</span>
+<strong>Histórias</strong>
+<small>Conheça as histórias bíblicas</small>
 </button>
 
-
-
-<button
-
-class="feature"
-
-onclick="openPage('learning')">
-
-<span class="icon">💡</span>
-
-<strong>Aprendizado</strong>
-
-<span>
-
-Valores e ensinamentos para refletir.
-
-</span>
-
+<button class="quick-btn" onclick="showScreen('activities')">
+<span class="quick-icon">🎨</span>
+<strong>Colorir</strong>
+<small>Aprender brincando</small>
 </button>
 
-
-
-<button
-
-class="feature"
-
-onclick="openPage('activities')">
-
-<span class="icon">🌱</span>
-
-<strong>Atividades</strong>
-
-<span>
-
-Aprender, pensar e descobrir.
-
-</span>
-
+<button class="quick-btn" onclick="showScreen('learning')">
+<span class="quick-icon">💡</span>
+<strong>Aprender</strong>
+<small>Valores para refletir</small>
 </button>
 
-
-
-<button
-
-class="feature"
-
-onclick="openPage('family')">
-
-<span class="icon">❤️</span>
-
-<strong>Para a Família</strong>
-
-<span>
-
-Momentos especiais para viver juntos.
-
-</span>
-
+<button class="quick-btn" onclick="showScreen('family')">
+<span class="quick-icon">❤️</span>
+<strong>Família</strong>
+<small>Momentos juntos</small>
 </button>
-
 
 </div>
 
+<div class="start-box">
 
-
-<section class="journey">
-
-
-<h2>
-
-🚀 Pronto para começar?
-
-</h2>
-
+<h2>🚀 Comece agora!</h2>
 
 <p>
-
-Vamos iniciar uma nova jornada de descoberta
-e aprendizado?
-
+Escolha uma história e entre diretamente na sua lição.
 </p>
 
-
-<button
-
-class="primary"
-
-onclick="openPage('stories')">
-
-📖 Ir às Lições
-
+<button class="big-button" onclick="showScreen('stories')">
+📖 Ir para as Histórias
 </button>
 
+</div>
+
+</div>
 
 </section>
 
 
+<!-- HISTÓRIAS -->
 
-<section class="lesson">
+<section id="stories" class="screen">
 
+<div class="content">
 
-<span class="badge">
-
-MISSÃO DE HOJE
-
-</span>
-
-
-<h3>
-
-💛 Deus conhece você
-
-</h3>
-
-
-<p>
-
-Reserve um momento para agradecer a Deus
-por algo especial em sua vida.
-
-</p>
-
-
-<button
-
-class="secondary"
-
-onclick="openPage('mission')">
-
-Descobrir a Missão ✨
-
+<button class="back" onclick="showScreen('home')">
+← Início
 </button>
 
+<h1 class="page-title">📖 Histórias Bíblicas</h1>
+
+<div class="card">
+<h2>🌈 A Arca de Noé</h2>
+<p>Entre diretamente na jornada de Noé.</p>
+<button class="action" onclick="openNoah()">
+Começar a lição →
+</button>
+</div>
+
+<div class="card">
+<h2>⭐ Abraão e a Promessa</h2>
+<p>Conheça a jornada de Abraão.</p>
+<button class="action" onclick="comingSoon('Abraão e a Promessa')">
+Abrir lição →
+</button>
+</div>
+
+<div class="card">
+<h2>🦁 Daniel na Cova dos Leões</h2>
+<p>Conheça o relato registrado em Daniel.</p>
+<button class="action" onclick="comingSoon('Daniel na Cova dos Leões')">
+Abrir lição →
+</button>
+</div>
+
+<div class="card">
+<h2>🐋 Jonas e o Grande Peixe</h2>
+<p>Conheça o livro de Jonas.</p>
+<button class="action" onclick="comingSoon('Jonas e o Grande Peixe')">
+Abrir lição →
+</button>
+</div>
+
+</div>
 
 </section>
 
 
+<!-- LIÇÃO NOÉ -->
 
-<div class="footer">
+<section id="noah" class="screen">
 
-“Lâmpada para os meus pés é a tua palavra
-e luz para o meu caminho.”
+<div class="content">
 
-<small>
+<button class="back" onclick="showScreen('stories')">
+← Histórias
+</button>
 
-SALMOS 119:105
-
-</small>
-
+<div class="lesson-header">
+<h1>🌈 A Arca de Noé</h1>
+<p>Uma jornada de aprendizado, atividades e descoberta.</p>
 </div>
 
+<div class="lesson-actions">
 
-</section>
-
-</section>
-
-
-
-<!-- =================================================
-     HISTÓRIAS
-================================================= -->
-
-<section
-
-class="page"
-
-id="stories">
-
-
-<section class="content">
-
-
-<button
-
-class="back-button"
-
-onclick="goHome()">
-
-← Voltar ao início
-
+<button class="lesson-action" onclick="showNoahStory()">
+📖 A História
 </button>
 
-
-<h2 class="section-title">
-
-📖 Histórias Bíblicas
-
-</h2>
-
-
-<div
-
-class="lesson-card">
-
-
-<h3>
-
-🌈 A Arca de Noé
-
-</h3>
-
-
-<p>
-
-Uma jornada para conhecer o relato bíblico
-de Noé e a arca.
-
-</p>
-
-
-<button
-
-class="lesson-button"
-
-onclick="openLesson('noah')">
-
-Ir à lição →
-
+<button class="lesson-action" onclick="showScreen('coloring')">
+🎨 Colorir
 </button>
 
-
-</div>
-
-
-
-<div
-
-class="lesson-card">
-
-
-<h3>
-
-⭐ Abraão e a Promessa
-
-</h3>
-
-
-<p>
-
-Conheça o chamado de Abraão e a promessa
-que Deus lhe fez.
-
-</p>
-
-
-<button
-
-class="lesson-button"
-
-onclick="openLesson('abraham')">
-
-Ir à lição →
-
+<button class="lesson-action" onclick="showNoahActivity()">
+🧩 Atividade
 </button>
 
-
-</div>
-
-
-
-<div
-
-class="lesson-card">
-
-
-<h3>
-
-🦁 Daniel na Cova dos Leões
-
-</h3>
-
-
-<p>
-
-Uma lição sobre fidelidade e confiança em Deus.
-
-</p>
-
-
-<button
-
-class="lesson-button"
-
-onclick="openLesson('daniel')">
-
-Ir à lição →
-
+<button class="lesson-action" onclick="showNoahFamily()">
+👨‍👩‍👧 Família
 </button>
 
-
-</div>
-
-
-
-<div
-
-class="lesson-card">
-
-
-<h3>
-
-🐋 Jonas e o Grande Peixe
-
-</h3>
-
-
-<p>
-
-Conheça o relato bíblico da missão de Jonas.
-
-</p>
-
-
-<button
-
-class="lesson-button"
-
-onclick="openLesson('jonah')">
-
-Ir à lição →
-
+<button class="lesson-action" onclick="showNoahBible()">
+📖 Ler na Bíblia
 </button>
 
-
-</div>
-
-
-</section>
-
-</section>
-
-
-
-<!-- =================================================
-     APRENDIZADO
-================================================= -->
-
-<section
-
-class="page"
-
-id="learning">
-
-
-<section class="content">
-
-
-<button
-
-class="back-button"
-
-onclick="goHome()">
-
-← Voltar
-
-</button>
-
-
-<h2 class="section-title">
-
-💡 Aprendizado
-
-</h2>
-
-
-<div class="lesson-card">
-
-<h3>💛 Amor</h3>
-
-<p>
-
-Vamos refletir sobre o amor e como ele aparece
-nos ensinamentos bíblicos.
-
-</p>
-
-<button
-
-class="lesson-button"
-
-onclick="openTopic('Amor')">
-
-Explorar →
-
+<button class="lesson-action" onclick="showScreen('stories')">
+📚 Outras Histórias
 </button>
 
 </div>
 
+<div id="lessonArea" class="lesson-section">
 
-<div class="lesson-card">
-
-<h3>🤝 Perdão</h3>
+<h2>👋 Vamos começar!</h2>
 
 <p>
-
-Uma reflexão sobre perdão e reconciliação.
-
+Escolha uma das opções acima. Cada botão abre imediatamente
+o conteúdo correspondente.
 </p>
 
-<button
+</div>
 
-class="lesson-button"
+</div>
 
-onclick="openTopic('Perdão')">
+</section>
 
-Explorar →
 
+<!-- COLORIR -->
+
+<section id="coloring" class="screen">
+
+<div class="content">
+
+<button class="back" onclick="openNoah()">
+← Voltar à lição
 </button>
 
-</div>
+<h1 class="page-title">🎨 Vamos Colorir!</h1>
 
-
-<div class="lesson-card">
-
-<h3>🙏 Fé</h3>
-
-<p>
-
-Vamos aprender sobre confiar em Deus.
-
-</p>
-
-<button
-
-class="lesson-button"
-
-onclick="openTopic('Fé')">
-
-Explorar →
-
-</button>
-
-</div>
-
-
-<div class="lesson-card">
-
-<h3>✨ Esperança</h3>
-
-<p>
-
-Uma reflexão sobre esperança e confiança.
-
-</p>
-
-<button
-
-class="lesson-button"
-
-onclick="openTopic('Esperança')">
-
-Explorar →
-
-</button>
-
-</div>
-
-
-</section>
-
-</section>
-
-
-
-<!-- =================================================
-     ATIVIDADES
-================================================= -->
-
-<section
-
-class="page"
-
-id="activities">
-
-
-<section class="content">
-
-
-<button
-
-class="back-button"
-
-onclick="goHome()">
-
-← Voltar
-
-</button>
-
-
-<h2 class="section-title">
-
-🌱 Atividades
-
-</h2>
-
-
-<div class="lesson-card">
-
-<h3>🎨 Desenhe sua Jornada</h3>
-
-<p>
-
-Escolha uma história bíblica que você conheceu
-e faça um desenho sobre ela.
-
-</p>
-
-</div>
-
-
-<div class="lesson-card">
-
-<h3>❓ Pergunta para pensar</h3>
-
-<p>
-
-Qual história bíblica você gostaria de conhecer melhor?
-
-</p>
-
-</div>
-
-
-<div class="lesson-card">
-
-<h3>💬 Conversa em Família</h3>
-
-<p>
-
-Converse com alguém da sua família sobre
-o que você aprendeu hoje.
-
-</p>
-
-</div>
-
-
-</section>
-
-</section>
-
-
-
-<!-- =================================================
-     FAMÍLIA
-================================================= -->
-
-<section
-
-class="page"
-
-id="family">
-
-
-<section class="content">
-
-
-<button
-
-class="back-button"
-
-onclick="goHome()">
-
-← Voltar
-
-</button>
-
-
-<h2 class="section-title">
-
-❤️ Para a Família
-
-</h2>
-
-
-<div class="lesson-card">
-
-<h3>👨‍👩‍👧 Momento em Família</h3>
-
-<p>
-
-Reserve alguns minutos para conversar sobre
-uma passagem bíblica juntos.
-
-</p>
-
-</div>
-
-
-<div class="lesson-card">
-
-<h3>🙏 Momento de Oração</h3>
-
-<p>
-
-A família pode reservar um momento especial
-para oração.
-
-</p>
-
-</div>
-
-
-<div class="lesson-card">
-
-<h3>💬 Perguntas para Conversar</h3>
-
-<p>
-
-O que aprendemos hoje?
-Como podemos colocar esse aprendizado em prática?
-
-</p>
-
-</div>
-
-
-</section>
-
-</section>
-
-
-
-<!-- =================================================
-     BÍBLIA
-================================================= -->
-
-<section
-
-class="page"
-
-id="bible">
-
-
-<section class="content">
-
-
-<button
-
-class="back-button"
-
-onclick="goHome()">
-
-← Voltar
-
-</button>
-
-
-<div class="bible-box">
-
-
-<h2>
-
-📖 Bíblia Sagrada
-
-</h2>
-
-
-<p>
-
-A Palavra de Deus deve ser apresentada com fidelidade
-à tradução escolhida, sem alterações, omissões ou adaptações
-apresentadas como texto bíblico.
-
-</p>
-
-
-<p>
-
-Esta área foi criada para oferecer acesso à leitura
-da Bíblia completa em português por meio de uma fonte
-oficial ou devidamente autorizada.
-
-</p>
-
-
-<button
-
-class="bible-button"
-
-onclick="openBible()">
-
-📖 Acessar a Bíblia Sagrada
-
-</button>
-
-
-</div>
-
-
-<div class="lesson-card">
-
-<h3>📜 Antigo Testamento</h3>
-
-<p>
-
-Gênesis até Malaquias.
-
-</p>
-
-</div>
-
-
-<div class="lesson-card">
-
-<h3>✝️ Novo Testamento</h3>
-
-<p>
-
-Mateus até Apocalipse.
-
-</p>
-
-</div>
-
-
-<div class="lesson-card">
-
-<h3>🔎 Pesquisa Bíblica</h3>
-
-<p>
-
-Área preparada para futura pesquisa por livros,
-capítulos e referências.
-
-</p>
-
-</div>
-
-
-</section>
-
-</section>
-
-
-
-<!-- =================================================
-     MISSÃO
-================================================= -->
-
-<section
-
-class="page"
-
-id="mission">
-
-
-<section class="content">
-
-
-<button
-
-class="back-button"
-
-onclick="goHome()">
-
-← Voltar
-
-</button>
-
-
-<div class="reading">
-
-
-<h2>
-
-⭐ Missão do Dia
-
-</h2>
-
-
-<h3>
-
-💛 Gratidão
-
-</h3>
-
-
-<p>
-
-Pense em três motivos pelos quais você pode
-agradecer a Deus hoje.
-
-</p>
-
-
-<p>
-
-Depois, compartilhe um deles com alguém
-da sua família.
-
-</p>
-
-
-</div>
-
-
-</section>
-
-</section>
-
-
-
-<!-- =================================================
-     LIÇÕES
-================================================= -->
-
-<section
-
-class="page"
-
-id="lesson-page">
-
-
-<section class="content">
-
-
-<button
-
-class="back-button"
-
-onclick="openPage('stories')">
-
-← Voltar às Histórias
-
-</button>
-
-
-<div
-
-class="reading"
-
-id="lesson-content">
-
-</div>
-
-
-</section>
-
-</section>
-
-
-</main>
-
-
-
-<script>
-
-/* =====================================================
-   NAVEGAÇÃO
-===================================================== */
-
-function openPage(page){
-
-document
-.querySelectorAll('.page')
-.forEach(function(p){
-
-p.classList.remove('active');
-
-});
-
-document
-.getElementById(page)
-.classList.add('active');
-
-closeMenu();
-
-window.scrollTo({
-
-top:0,
-
-behavior:'smooth'
-
-});
-
-}
-
-
-/* =====================================================
-   INÍCIO
-===================================================== */
-
-function goHome(){
-
-openPage('home');
-
-}
-
-
-/* =====================================================
-   MENU
-===================================================== */
-
-function openMenu(){
-
-document
-.getElementById('menu')
-.classList.add('show');
-
-document
-.getElementById('overlay')
-.classList.add('show');
-
-}
-
-
-function closeMenu(){
-
-document
-.getElementById('menu')
-.classList.remove('show');
-
-document
-.getElementById('overlay')
-.classList.remove('show');
-
-}
-
-
-/* =====================================================
-   LIÇÕES
-===================================================== */
-
-const lessons = {
-
-
-noah:{
-
-title:"🌈 A Arca de Noé",
-
-reference:"Leia o relato bíblico em Gênesis, capítulos 6 a 9.",
-
-text:`
+<div class="card">
 
 <h2>🌈 A Arca de Noé</h2>
 
 <p>
-
-<strong>📖 Onde encontrar na Bíblia:</strong><br>
-
-Gênesis 6–9
-
+Escolha uma cor e pinte livremente o desenho.
 </p>
 
-<p>
+<div class="color-tools">
 
-A Bíblia registra o relato de Noé, sua família
-e a construção da arca.
+<button class="color" style="background:#e53935" onclick="setColor('#e53935')"></button>
+<button class="color" style="background:#fb8c00" onclick="setColor('#fb8c00')"></button>
+<button class="color" style="background:#fdd835" onclick="setColor('#fdd835')"></button>
+<button class="color" style="background:#43a047" onclick="setColor('#43a047')"></button>
+<button class="color" style="background:#1e88e5" onclick="setColor('#1e88e5')"></button>
+<button class="color" style="background:#8e24aa" onclick="setColor('#8e24aa')"></button>
+<button class="color" style="background:#000000" onclick="setColor('#000000')"></button>
 
-</p>
+</div>
 
-<p>
+<canvas id="colorCanvas"></canvas>
 
-Para conhecer a história completa,
-leia diretamente o texto bíblico
-na Bíblia Sagrada.
-
-</p>
-
-<h3>💡 Vamos refletir?</h3>
-
-<p>
-
-O que podemos aprender sobre obediência
-e confiança em Deus?
-
-</p>
-
-<button class="lesson-button"
-onclick="openPage('bible')">
-
-📖 Abrir a Bíblia
-
+<button class="clear-btn" onclick="clearCanvas()">
+🧽 Limpar desenho
 </button>
 
-`
+</div>
 
-},
+</div>
+
+</section>
 
 
+<!-- ATIVIDADES -->
 
-abraham:{
+<section id="activities" class="screen">
 
-title:"⭐ Abraão e a Promessa",
+<div class="content">
 
-reference:"Leia o relato bíblico principalmente em Gênesis 12 e capítulos relacionados.",
+<button class="back" onclick="showScreen('home')">← Início</button>
 
-text:`
+<h1 class="page-title">🎨 Atividades</h1>
 
-<h2>⭐ Abraão e a Promessa</h2>
+<div class="card">
+<h2>🌈 Colorir a Arca</h2>
+<p>Entre na atividade de colorir.</p>
+<button class="action" onclick="showScreen('coloring')">
+🎨 Começar
+</button>
+</div>
+
+<div class="card">
+<h2>🧩 Pense e Responda</h2>
+<p>Escolha uma história e converse sobre o que aprendeu.</p>
+<button class="action" onclick="openNoah()">
+🌈 Atividade de Noé
+</button>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- APRENDIZADO -->
+
+<section id="learning" class="screen">
+
+<div class="content">
+
+<button class="back" onclick="showScreen('home')">← Início</button>
+
+<h1 class="page-title">💡 Aprendizado</h1>
+
+<div class="card">
+<h2>💛 Amor</h2>
+<p>Um espaço para refletir sobre o amor.</p>
+</div>
+
+<div class="card">
+<h2>🤝 Perdão</h2>
+<p>Um espaço para conversar sobre perdão.</p>
+</div>
+
+<div class="card">
+<h2>🙏 Fé</h2>
+<p>Um espaço para aprender sobre fé.</p>
+</div>
+
+<div class="card">
+<h2>✨ Esperança</h2>
+<p>Um espaço para refletir.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FAMÍLIA -->
+
+<section id="family" class="screen">
+
+<div class="content">
+
+<button class="back" onclick="showScreen('home')">← Início</button>
+
+<h1 class="page-title">❤️ Para a Família</h1>
+
+<div class="card">
+
+<h2>👨‍👩‍👧 Conversando juntos</h2>
 
 <p>
-
-<strong>📖 Onde encontrar:</strong>
-
-Gênesis 12 e outros capítulos do livro de Gênesis.
-
+Depois de cada lição, a família pode conversar sobre
+o que foi aprendido.
 </p>
+
+</div>
+
+<div class="card">
+
+<h2>🙏 Momento de oração</h2>
 
 <p>
-
-A Bíblia registra o chamado de Abraão
-e as promessas que Deus lhe fez.
-
+Um espaço especial para a família reservar um momento
+de oração.
 </p>
 
-<h3>💡 Vamos refletir?</h3>
+</div>
 
-<p>
+</div>
 
-O que significa confiar em Deus
-mesmo quando ainda não conhecemos
-todo o caminho?
+</section>
 
-</p>
 
-<button class="lesson-button"
-onclick="openPage('bible')">
+<!-- BÍBLIA -->
 
-📖 Ler na Bíblia
+<section id="bible" class="screen">
 
+<div class="content">
+
+<button class="back" onclick="showScreen('home')">
+← Início
 </button>
 
-`
+<h1 class="page-title">📖 Bíblia Sagrada</h1>
 
-},
+<div class="bible-notice">
 
+<strong>Princípio do App:</strong><br>
 
+O texto bíblico deve ser apresentado fielmente conforme
+a edição escolhida. Explicações e atividades são materiais
+separados e nunca devem ser apresentados como substituição
+das Escrituras.
 
-daniel:{
+</div>
 
-title:"🦁 Daniel na Cova dos Leões",
+<br>
 
-reference:"Leia Daniel, capítulo 6.",
+<div class="card">
 
-text:`
+<h2>📜 Antigo Testamento</h2>
 
-<h2>🦁 Daniel na Cova dos Leões</h2>
-
-<p>
-
-<strong>📖 Onde encontrar:</strong>
-
-Daniel 6
-
-</p>
-
-<p>
-
-O relato bíblico apresenta Daniel
-e sua fidelidade a Deus.
-
-</p>
-
-<h3>💡 Vamos refletir?</h3>
-
-<p>
-
-Como podemos permanecer firmes
-naquilo em que cremos?
-
-</p>
-
-<button class="lesson-button"
-onclick="openPage('bible')">
-
-📖 Ler Daniel 6
-
+<button class="bible-book" onclick="showBibleReference('Gênesis')">
+📖 Gênesis
 </button>
 
-`
-
-},
-
-
-
-jonah:{
-
-title:"🐋 Jonas e o Grande Peixe",
-
-reference:"Leia o livro de Jonas.",
-
-text:`
-
-<h2>🐋 Jonas e o Grande Peixe</h2>
-
-<p>
-
-<strong>📖 Onde encontrar:</strong>
-
-Livro de Jonas
-
-</p>
-
-<p>
-
-A Bíblia registra a missão dada a Jonas
-e os acontecimentos relacionados
-à sua viagem.
-
-</p>
-
-<h3>💡 Vamos refletir?</h3>
-
-<p>
-
-Por que é importante ouvir e obedecer
-a Deus?
-
-</p>
-
-<button class="lesson-button"
-onclick="openPage('bible')">
-
-📖 Abrir a Bíblia
-
+<button class="bible-book" onclick="showBibleReference('Êxodo')">
+📖 Êxodo
 </button>
 
-`
+<button class="bible-book" onclick="showBibleReference('Salmos')">
+📖 Salmos
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>✝️ Novo Testamento</h2>
+
+<button class="bible-book" onclick="showBibleReference('Mateus')">
+📖 Mateus
+</button>
+
+<button class="bible-book" onclick="showBibleReference('João')">
+📖 João
+</button>
+
+<button class="bible-book" onclick="showBibleReference('Apocalipse')">
+📖 Apocalipse
+</button>
+
+</div>
+
+<div id="bibleArea"></div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<script>
+
+/* =========================
+NAVEGAÇÃO
+========================= */
+
+function showScreen(id){
+
+document.querySelectorAll('.screen').forEach(function(screen){
+screen.classList.remove('active');
+});
+
+document.getElementById(id).classList.add('active');
+
+closeMenu();
+
+/* VAI IMEDIATAMENTE PARA O TOPO */
+
+window.scrollTo({
+top:0,
+left:0,
+behavior:'instant'
+});
 
 }
 
-};
 
+/* =========================
+MENU
+========================= */
 
+function openMenu(){
 
-function openLesson(id){
+document.getElementById('sideMenu').classList.add('show');
+document.getElementById('overlay').classList.add('show');
 
-const lesson = lessons[id];
+}
 
-document
-.getElementById('lesson-content')
-.innerHTML = lesson.text;
+function closeMenu(){
 
-openPage('lesson-page');
+document.getElementById('sideMenu').classList.remove('show');
+document.getElementById('overlay').classList.remove('show');
 
 }
 
 
+/* =========================
+NOÉ
+========================= */
 
-/* =====================================================
-   TEMAS
-===================================================== */
+function openNoah(){
 
-function openTopic(topic){
+showScreen('noah');
 
-document
-.getElementById('lesson-content')
-.innerHTML =
-
-`
-
-<h2>💡 ${topic}</h2>
+document.getElementById('lessonArea').innerHTML = `
+<h2>👋 Bem-vindo à jornada de Noé!</h2>
 
 <p>
+Aqui você pode escolher imediatamente o que deseja fazer:
+conhecer a história, realizar uma atividade, colorir,
+conversar em família ou localizar a referência bíblica.
+</p>
+`;
 
-Esta é uma área de aprendizado e reflexão.
+}
 
+
+function showNoahStory(){
+
+document.getElementById('lessonArea').innerHTML = `
+
+<h2>📖 A História</h2>
+
+<p>
+<strong>Referência bíblica:</strong> Gênesis, capítulos 6 a 9.
 </p>
 
 <p>
-
-As explicações apresentadas aqui são materiais
-de apoio e não substituem o texto bíblico.
-
+A história completa de Noé está registrada nas Escrituras
+em Gênesis 6–9.
 </p>
 
 <p>
-
-Para estudar o assunto diretamente nas Escrituras,
-utilize a área <strong>📖 Bíblia Sagrada</strong>.
-
+Nesta Jornada, o conteúdo infantil serve como apoio ao
+aprendizado. Para a leitura integral e fiel do relato bíblico,
+utilize sempre o texto bíblico completo da edição escolhida.
 </p>
 
-<button class="lesson-button"
-onclick="openPage('bible')">
-
-📖 Ir para a Bíblia
-
+<button class="action" onclick="showNoahBible()">
+📖 Ir para a referência bíblica
 </button>
 
 `;
 
-openPage('lesson-page');
+window.scrollTo({top:0,behavior:'smooth'});
 
 }
 
 
+function showNoahActivity(){
 
-/* =====================================================
-   BÍBLIA
-===================================================== */
+document.getElementById('lessonArea').innerHTML = `
 
-function openBible(){
+<h2>🧩 Atividade</h2>
 
-/*
+<h3>Vamos pensar?</h3>
 
-IMPORTANTE:
+<p>
+1️⃣ Onde encontramos a história de Noé na Bíblia?
+</p>
 
-O LINK ABAIXO É O LOCAL PREPARADO PARA
-A FONTE OFICIAL/AUTORIZADA DA BÍBLIA.
+<p>
+2️⃣ Qual atividade você gostaria de fazer depois:
+colorir ou conversar com a família?
+</p>
 
-QUANDO DEFINIRMOS A FONTE CORRETA,
-PODEMOS SUBSTITUIR ESTE ENDEREÇO.
+<button class="action" onclick="showScreen('coloring')">
+🎨 Vamos Colorir
+</button>
 
-*/
+`;
 
-window.open(
+window.scrollTo({top:0,behavior:'smooth'});
 
-'https://www.sbb.org.br',
+}
 
-'_blank'
 
+function showNoahFamily(){
+
+document.getElementById('lessonArea').innerHTML = `
+
+<h2>👨‍👩‍👧 Momento em Família</h2>
+
+<p>
+Leia a referência bíblica juntos e conversem sobre
+o que aprenderam.
+</p>
+
+<p>
+Uma pessoa da família pode ajudar a criança a localizar
+Gênesis, capítulos 6 a 9.
+</p>
+
+`;
+
+window.scrollTo({top:0,behavior:'smooth'});
+
+}
+
+
+function showNoahBible(){
+
+showScreen('bible');
+
+document.getElementById('bibleArea').innerHTML = `
+
+<div class="card">
+
+<h2>🌈 A Arca de Noé</h2>
+
+<div class="reference-box">
+
+<strong>📖 Referência:</strong>
+
+<p>
+Gênesis 6, 7, 8 e 9
+</p>
+
+</div>
+
+<p>
+Selecione o livro de Gênesis para acessar a estrutura
+da leitura bíblica.
+</p>
+
+</div>
+
+`;
+
+}
+
+
+/* =========================
+OUTRAS HISTÓRIAS
+========================= */
+
+function comingSoon(name){
+
+alert(
+'📖 ' + name +
+'\n\nEsta história será a próxima a receber sua jornada completa com lição, atividades, família e recursos interativos.'
 );
 
 }
 
 
+/* =========================
+BÍBLIA
+========================= */
+
+function showBibleReference(book){
+
+document.getElementById('bibleArea').innerHTML = `
+
+<div class="card">
+
+<h2>📖 ${book}</h2>
+
+<p>
+A estrutura do App está preparada para receber a Bíblia
+completa em uma edição que permita legalmente a reprodução
+integral do texto.
+</p>
+
+<p>
+Quando a base bíblica completa for adicionada ao projeto,
+aqui aparecerão todos os capítulos desse livro.
+</p>
+
+</div>
+
+`;
+
+window.scrollTo({
+top:document.body.scrollHeight,
+behavior:'smooth'
+});
+
+}
+
+
+/* =========================
+COLORIR
+========================= */
+
+let canvas;
+let ctx;
+let drawing=false;
+let selectedColor='#000000';
+
+function setupCanvas(){
+
+canvas=document.getElementById('colorCanvas');
+
+if(!canvas)return;
+
+const rect=canvas.getBoundingClientRect();
+
+canvas.width=rect.width*2;
+canvas.height=450*2;
+
+canvas.style.height='450px';
+
+ctx=canvas.getContext('2d');
+
+ctx.scale(2,2);
+
+ctx.fillStyle='white';
+ctx.fillRect(0,0,rect.width,450);
+
+ctx.lineWidth=8;
+ctx.lineCap='round';
+
+canvas.addEventListener('pointerdown',startDraw);
+canvas.addEventListener('pointermove',draw);
+canvas.addEventListener('pointerup',stopDraw);
+canvas.addEventListener('pointerleave',stopDraw);
+
+}
+
+
+function getPosition(e){
+
+const rect=canvas.getBoundingClientRect();
+
+return{
+
+x:e.clientX-rect.left,
+y:e.clientY-rect.top
+
+};
+
+}
+
+
+function startDraw(e){
+
+drawing=true;
+
+const p=getPosition(e);
+
+ctx.beginPath();
+ctx.moveTo(p.x,p.y);
+
+}
+
+
+function draw(e){
+
+if(!drawing)return;
+
+const p=getPosition(e);
+
+ctx.strokeStyle=selectedColor;
+
+ctx.lineTo(p.x,p.y);
+
+ctx.stroke();
+
+ctx.beginPath();
+ctx.moveTo(p.x,p.y);
+
+}
+
+
+function stopDraw(){
+
+drawing=false;
+
+if(ctx)ctx.beginPath();
+
+}
+
+
+function setColor(color){
+
+selectedColor=color;
+
+}
+
+
+function clearCanvas(){
+
+if(!canvas)return;
+
+const rect=canvas.getBoundingClientRect();
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle='white';
+
+ctx.fillRect(0,0,rect.width,450);
+
+}
+
+
+window.addEventListener('load',setupCanvas);
+
 </script>
 
-
 </body>
-
 </html>
