@@ -7,559 +7,380 @@
 <title>Jornada pela Bíblia</title>
 
 <style>
-
-:root{
-    --azul:#174b82;
-    --azul-claro:#2d7bc4;
-    --verde:#159447;
-    --laranja:#f58220;
-    --roxo:#7b35b5;
-    --rosa:#ed4264;
-    --fundo:#eef7ff;
-    --texto:#173a63;
-}
-
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
 }
 
+html,
 body{
+    width:100%;
+    min-height:100%;
     font-family:Arial, Helvetica, sans-serif;
-    background:linear-gradient(#eaf6ff,#ffffff);
-    color:var(--texto);
-    min-height:100vh;
+    background:#eef6fb;
+    color:#173b63;
 }
 
-button{
-    font-family:inherit;
-}
-
-/* =========================
-   APP
-========================= */
+/* APP */
 
 #app{
     width:100%;
     max-width:900px;
-    margin:auto;
+    margin:0 auto;
     min-height:100vh;
+    background:#eef6fb;
 }
 
-/* =========================
-   TELA INICIAL
-========================= */
-
-#home{
-    display:block;
-}
-
-.hero{
-    width:100%;
-    overflow:hidden;
-    background:#fff;
-}
-
-.hero img{
-    width:100%;
-    display:block;
-}
-
-/* BOTÕES PRINCIPAIS */
-
-.menu-principal{
-    background:white;
-    padding:14px 12px 10px;
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:10px;
-}
-
-.botao-menu{
-    border:none;
-    border-radius:22px;
-    min-height:120px;
-    color:white;
-    font-weight:bold;
-    font-size:16px;
-    cursor:pointer;
-    box-shadow:0 5px 12px rgba(0,0,0,.20);
-    transition:.2s;
-    padding:10px 5px;
-}
-
-.botao-menu:active{
-    transform:scale(.96);
-}
-
-.botao-menu .icone{
-    display:block;
-    font-size:38px;
-    margin-bottom:8px;
-}
-
-.historia{
-    background:linear-gradient(135deg,#1685df,#0752a0);
-}
-
-.aprendizado{
-    background:linear-gradient(135deg,#27b85d,#087c38);
-}
-
-.atividades{
-    background:linear-gradient(135deg,#ffae35,#ef6b12);
-}
-
-.familia{
-    background:linear-gradient(135deg,#9a49e7,#5d1598);
-}
-
-/* COMEÇAR A JORNADA */
-
-.jornada-area{
-    background:white;
-    padding:10px 14px 20px;
-}
-
-.botao-jornada{
-    width:100%;
-    border:none;
-    border-radius:25px;
-    padding:18px;
-    background:linear-gradient(135deg,#ff5c76,#e92255);
-    color:white;
-    font-size:28px;
-    font-weight:bold;
-    cursor:pointer;
-    box-shadow:0 6px 14px rgba(190,30,60,.25);
-}
-
-.botao-jornada:active{
-    transform:scale(.98);
-}
-
-.imagem-segunda{
-    width:100%;
-    margin-top:18px;
-    border-radius:25px;
-    overflow:hidden;
-}
-
-.imagem-segunda img{
-    width:100%;
-    display:block;
-}
-
-/* CONSULTAR BÍBLIA */
-
-.biblia-area{
-    background:linear-gradient(135deg,#e6f5ff,#b9e0ff);
-    padding:20px;
-    text-align:center;
-}
-
-.botao-biblia{
-    border:none;
-    background:linear-gradient(135deg,#254f7e,#16365e);
-    color:white;
-    border-radius:24px;
-    padding:18px 30px;
-    font-size:26px;
-    font-weight:bold;
-    cursor:pointer;
-    box-shadow:0 7px 16px rgba(0,0,0,.20);
-}
-
-.botao-biblia:active{
-    transform:scale(.97);
-}
-
-.versiculo{
-    margin-top:18px;
-    font-style:italic;
-    font-size:18px;
-}
-
-/* =========================
-   TELAS INTERNAS
-========================= */
+/* =====================================================
+TELAS
+===================================================== */
 
 .tela{
     display:none;
     min-height:100vh;
-    background:linear-gradient(#eef7ff,#ffffff);
 }
 
 .tela.ativa{
     display:block;
 }
 
-.topo{
-    display:flex;
-    align-items:center;
-    gap:15px;
-    padding:18px;
-    background:white;
-    box-shadow:0 2px 8px rgba(0,0,0,.10);
-}
+/* =====================================================
+TELA INICIAL
+A IMAGEM APARECE APENAS UMA VEZ
+===================================================== */
 
-.voltar{
-    width:60px;
-    height:60px;
-    border:none;
-    border-radius:50%;
-    background:var(--azul);
-    color:white;
-    font-size:38px;
-    cursor:pointer;
-}
-
-.titulo-topo{
-    font-size:28px;
-    font-weight:bold;
-    color:var(--azul);
-}
-
-.conteudo{
-    padding:20px 15px 40px;
-}
-
-.card{
-    background:white;
-    border-radius:25px;
-    padding:22px;
-    margin-bottom:18px;
-    box-shadow:0 5px 18px rgba(30,70,110,.12);
-}
-
-.card h2{
-    color:var(--azul);
-    margin-bottom:15px;
-    font-size:28px;
-}
-
-.card h3{
-    color:#177d42;
-    margin:18px 0 10px;
-}
-
-.card p{
-    font-size:18px;
-    line-height:1.6;
-    margin-bottom:12px;
-}
-
-.referencia{
-    display:inline-block;
-    background:#e4f2ff;
-    color:var(--azul);
-    padding:10px 15px;
-    border-radius:15px;
-    font-weight:bold;
-    margin-bottom:15px;
-}
-
-/* =========================
-   DIAS DA CRIAÇÃO
-========================= */
-
-.dias{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-}
-
-.dia{
-    background:linear-gradient(135deg,#f4fbff,#e2f3ff);
-    border-radius:18px;
-    padding:15px;
-    font-size:16px;
-    line-height:1.4;
-}
-
-.dia strong{
-    display:block;
-    color:#1760a5;
-    margin-bottom:5px;
-}
-
-/* =========================
-   APRENDIZADO
-========================= */
-
-.licao{
-    background:linear-gradient(135deg,#e8fff0,#c7f5d7);
-    border-left:7px solid var(--verde);
-}
-
-.licao p{
-    font-size:20px;
-    font-weight:bold;
-}
-
-/* =========================
-   ATIVIDADES
-========================= */
-
-.abas-atividades{
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr;
-    gap:8px;
-    margin-bottom:20px;
-}
-
-.aba{
-    border:none;
-    padding:13px 5px;
-    border-radius:15px;
-    background:#dce8f4;
-    color:var(--azul);
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.aba.ativa{
-    background:var(--azul);
-    color:white;
-}
-
-.atividade{
-    display:none;
-}
-
-.atividade.ativa{
-    display:block;
-}
-
-/* =========================
-   COLORIR
-========================= */
-
-.colorir-area{
-    text-align:center;
-}
-
-.paleta{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:12px;
-    margin-bottom:20px;
-}
-
-.cor{
-    width:46px;
-    height:46px;
-    border-radius:50%;
-    border:4px solid white;
-    box-shadow:0 3px 8px rgba(0,0,0,.25);
-    cursor:pointer;
-}
-
-.vermelho{background:#ed3030;}
-.amarelo{background:#ffe24a;}
-.azul{background:#3188cf;}
-.verde{background:#42a04b;}
-.roxo{background:#673bb2;}
-.rosa{background:#e51b63;}
-.marrom{background:#795548;}
-.preto{background:#111;}
-
-.desenho{
+.home{
+    position:relative;
     width:100%;
-    background:white;
-    border-radius:25px;
-    border:2px solid #d8e5f0;
-    padding:10px;
+    max-width:900px;
+    margin:auto;
+    overflow:hidden;
 }
 
-.desenho svg{
+/* SUA IMAGEM */
+
+.imagem-home{
+    display:block;
     width:100%;
     height:auto;
 }
 
-/* =========================
-   PUZZLE
-========================= */
+/* =====================================================
+ÁREAS INVISÍVEIS CLICÁVEIS SOBRE A IMAGEM
 
-.puzzle-info{
-    text-align:center;
-    font-size:18px;
-    margin-bottom:18px;
-}
+NÃO CRIA BOTÕES NOVOS.
+NÃO DUPLICA A IMAGEM.
+APENAS TORNA A NAVEGAÇÃO DA IMAGEM FUNCIONAL.
+===================================================== */
 
-.puzzle{
-    width:100%;
-    max-width:600px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:4px;
-    background:#173a63;
-    padding:6px;
-    border-radius:18px;
-}
-
-.peca{
-    aspect-ratio:1/1;
-    background-image:url("2026-09-06_Original.png");
-    background-size:300% 300%;
-    border-radius:8px;
+.hotspot{
+    position:absolute;
+    background:transparent;
+    border:none;
     cursor:pointer;
-    border:2px solid white;
+    z-index:10;
 }
 
-.peca.selecionada{
-    outline:5px solid #ffcc00;
+/* Linha com os 4 botões principais */
+
+#btnHistorias{
+    left:2%;
+    top:52%;
+    width:23%;
+    height:13%;
 }
 
-/* =========================
-   PALAVRAS
-========================= */
-
-.cruzadinha{
-    text-align:center;
+#btnAprendizado{
+    left:26%;
+    top:52%;
+    width:23%;
+    height:13%;
 }
 
-.pergunta{
-    font-size:19px;
-    margin-bottom:20px;
+#btnAtividades{
+    left:51%;
+    top:52%;
+    width:23%;
+    height:13%;
+}
+
+#btnFamilia{
+    left:75%;
+    top:52%;
+    width:23%;
+    height:13%;
+}
+
+/* COMEÇAR A JORNADA */
+
+#btnJornada{
+    left:3%;
+    top:66%;
+    width:94%;
+    height:11%;
+}
+
+/* CONSULTAR A BÍBLIA */
+
+#btnBiblia{
+    left:22%;
+    top:84%;
+    width:56%;
+    height:10%;
+}
+
+/* =====================================================
+CABEÇALHO DAS TELAS
+===================================================== */
+
+.cabecalho{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:20px;
+    background:#eaf4fc;
+    color:#173b63;
+    position:sticky;
+    top:0;
+    z-index:50;
+}
+
+.botao-voltar{
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    border:none;
+    background:#174b7c;
+    color:white;
+    font-size:34px;
+    cursor:pointer;
+}
+
+.titulo-tela{
+    font-size:30px;
     font-weight:bold;
 }
 
-.palavra-linha{
+/* =====================================================
+CONTEÚDO
+===================================================== */
+
+.conteudo{
+    padding:22px;
+}
+
+.card{
+    background:white;
+    border-radius:28px;
+    padding:25px;
+    margin-bottom:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,.10);
+}
+
+.card h2{
+    font-size:28px;
+    margin-bottom:18px;
+    color:#173b63;
+}
+
+.card h3{
+    font-size:22px;
+    margin:18px 0 10px;
+    color:#245c91;
+}
+
+.card p{
+    font-size:19px;
+    line-height:1.6;
+    color:#314d68;
+}
+
+.botao-principal{
+    width:100%;
+    padding:20px;
+    margin-top:15px;
+    border:none;
+    border-radius:22px;
+    background:#174b7c;
+    color:white;
+    font-size:22px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* =====================================================
+HISTÓRIAS
+===================================================== */
+
+.historia{
+    background:white;
+    border-radius:25px;
+    padding:22px;
+    margin-bottom:18px;
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+    cursor:pointer;
+}
+
+.historia:hover{
+    transform:scale(1.01);
+}
+
+.referencia{
+    display:inline-block;
+    margin-top:10px;
+    padding:8px 14px;
+    border-radius:15px;
+    background:#e7f2ff;
+    color:#174b7c;
+    font-weight:bold;
+}
+
+/* =====================================================
+ATIVIDADES
+===================================================== */
+
+.grade-atividades{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+}
+
+.atividade{
+    min-height:160px;
+    border:none;
+    border-radius:25px;
+    padding:20px;
+    font-size:20px;
+    font-weight:bold;
+    color:white;
+    cursor:pointer;
+}
+
+.colorir{
+    background:#ff8b2b;
+}
+
+.puzzle{
+    background:#299b58;
+}
+
+.cruzadas{
+    background:#7c3fc5;
+}
+
+.quiz{
+    background:#2477bc;
+}
+
+/* =====================================================
+COLORIR
+===================================================== */
+
+.cores{
     display:flex;
-    justify-content:center;
-    gap:6px;
-    margin:18px 0;
     flex-wrap:wrap;
+    justify-content:center;
+    gap:15px;
+    margin:20px 0;
+}
+
+.cor{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    border:5px solid white;
+    box-shadow:0 4px 12px rgba(0,0,0,.2);
+    cursor:pointer;
+}
+
+.vermelho{background:#ef3030;}
+.amarelo{background:#ffe34c;}
+.azul{background:#3186c7;}
+.verde{background:#4b9d4d;}
+.roxo{background:#643da8;}
+.rosa{background:#e91b5a;}
+.marrom{background:#795548;}
+.preto{background:#111;}
+
+/* =====================================================
+PUZZLE FUNCIONAL
+===================================================== */
+
+#puzzleContainer{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:4px;
+    max-width:600px;
+    margin:auto;
+}
+
+.peca{
+    aspect-ratio:1;
+    border:2px solid white;
+    cursor:pointer;
+    background-size:300% 300%;
+}
+
+/* =====================================================
+PALAVRAS CRUZADAS
+===================================================== */
+
+.cruzadas-container{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.pergunta-cruzada{
+    font-size:19px;
+    font-weight:bold;
+    color:#173b63;
+}
+
+.resposta{
+    display:flex;
+    gap:5px;
+    flex-wrap:wrap;
+    margin-top:10px;
 }
 
 .letra{
     width:42px;
     height:48px;
-    border:2px solid #6d8aa6;
+    border:2px solid #7695b3;
     border-radius:8px;
-    background:white;
     text-align:center;
     font-size:24px;
-    font-weight:bold;
     text-transform:uppercase;
 }
 
-.palavra-atual{
-    background:#eef7ff;
-    border-radius:20px;
-    padding:20px;
-}
+/* =====================================================
+RESPONSIVO
+===================================================== */
 
-.proxima-palavra,
-.conferir{
-    width:100%;
-    margin-top:15px;
-    border:none;
-    border-radius:18px;
-    padding:17px;
-    font-size:20px;
-    font-weight:bold;
-    color:white;
-    cursor:pointer;
-}
+@media(max-width:500px){
 
-.proxima-palavra{
-    background:var(--azul-claro);
-}
-
-.conferir{
-    background:var(--verde);
-}
-
-.resultado{
-    margin-top:15px;
-    font-size:20px;
-    font-weight:bold;
-}
-
-/* =========================
-   FAMÍLIA
-========================= */
-
-.botao-familia{
-    width:100%;
-    margin-top:12px;
-    padding:18px;
-    border:none;
-    border-radius:20px;
-    background:linear-gradient(135deg,#8036bf,#57208d);
-    color:white;
-    font-size:19px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-/* =========================
-   BÍBLIA
-========================= */
-
-.biblia-opcao{
-    width:100%;
-    border:none;
-    background:white;
-    margin-bottom:12px;
-    padding:18px;
-    border-radius:18px;
-    box-shadow:0 4px 12px rgba(0,0,0,.10);
-    color:var(--azul);
-    text-align:left;
-    cursor:pointer;
-    font-size:18px;
-    font-weight:bold;
-}
-
-/* =========================
-   RESPONSIVO
-========================= */
-
-@media(max-width:600px){
-
-    .menu-principal{
-        gap:8px;
-        padding:10px 8px;
+    .titulo-tela{
+        font-size:23px;
     }
 
-    .botao-menu{
-        min-height:105px;
-        font-size:13px;
-        border-radius:18px;
-    }
-
-    .botao-menu .icone{
-        font-size:30px;
-    }
-
-    .botao-jornada{
-        font-size:22px;
-        padding:15px;
-    }
-
-    .dias{
-        grid-template-columns:1fr;
-    }
-
-    .titulo-topo{
+    .card h2{
         font-size:24px;
     }
 
-    .abas-atividades{
-        font-size:12px;
+    .card p{
+        font-size:17px;
+    }
+
+    .grade-atividades{
+        grid-template-columns:1fr;
     }
 
     .letra{
-        width:38px;
-        height:45px;
+        width:35px;
+        height:43px;
     }
-
 }
 
 </style>
@@ -569,995 +390,739 @@ button{
 
 <div id="app">
 
-<!-- =========================
-     TELA INICIAL
-========================= -->
+<!-- =====================================================
+TELA INICIAL
+===================================================== -->
 
-<section id="home">
+<section id="home" class="tela ativa">
 
-    <!-- IMAGEM PRINCIPAL -->
-    <div class="hero">
-        <img src="2026-09-06_Original.png"
-             alt="Jornada pela Bíblia">
-    </div>
+<div class="home">
 
+<img
+src="2026-09-06_Original.png"
+alt="Jornada pela Bíblia"
+class="imagem-home"
+>
 
-    <!-- BOTÕES PRINCIPAIS -->
-    <div class="menu-principal">
+<!-- ÁREAS FUNCIONAIS SOBRE A IMAGEM -->
 
-        <button class="botao-menu historia"
-                onclick="abrirTela('historias')">
-            <span class="icone">📖</span>
-            Histórias<br>Bíblicas
-        </button>
+<button
+class="hotspot"
+id="btnHistorias"
+onclick="abrirTela('historias')"
+aria-label="Histórias Bíblicas">
+</button>
 
-        <button class="botao-menu aprendizado"
-                onclick="abrirTela('aprendizado')">
-            <span class="icone">💡</span>
-            Aprendizado
-        </button>
+<button
+class="hotspot"
+id="btnAprendizado"
+onclick="abrirTela('aprendizado')"
+aria-label="Aprendizado">
+</button>
 
-        <button class="botao-menu atividades"
-                onclick="abrirTela('atividades')">
-            <span class="icone">🎨</span>
-            Atividades
-        </button>
+<button
+class="hotspot"
+id="btnAtividades"
+onclick="abrirTela('atividades')"
+aria-label="Atividades">
+</button>
 
-        <button class="botao-menu familia"
-                onclick="abrirTela('familia')">
-            <span class="icone">👨‍👩‍👧‍👦</span>
-            Para a<br>Família
-        </button>
+<button
+class="hotspot"
+id="btnFamilia"
+onclick="abrirTela('familia')"
+aria-label="Para a Família">
+</button>
 
-    </div>
+<button
+class="hotspot"
+id="btnJornada"
+onclick="abrirTela('historias')"
+aria-label="Começar a Jornada">
+</button>
 
+<button
+class="hotspot"
+id="btnBiblia"
+onclick="abrirTela('biblia')"
+aria-label="Consultar a Bíblia">
+</button>
 
-    <!-- COMEÇAR JORNADA -->
-    <div class="jornada-area">
-
-        <button class="botao-jornada"
-                onclick="abrirTela('historias')">
-            🎒 🗺️ Começar a Jornada ➜
-        </button>
-
-        <div class="imagem-segunda">
-            <img src="2026-09-05_Original.png"
-                 alt="Conteúdo seguro para todas as idades">
-        </div>
-
-    </div>
-
-
-    <!-- BÍBLIA -->
-    <div class="biblia-area">
-
-        <button class="botao-biblia"
-                onclick="abrirTela('biblia')">
-            📖 Consultar a Bíblia
-        </button>
-
-        <p class="versiculo">
-            “Lâmpada para os meus pés é a tua palavra,
-            e luz para o meu caminho.”
-            <br><strong>Salmos 119:105</strong>
-        </p>
-
-    </div>
+</div>
 
 </section>
 
 
-<!-- =========================
-     HISTÓRIAS BÍBLICAS
-========================= -->
+<!-- =====================================================
+HISTÓRIAS BÍBLICAS
+===================================================== -->
 
 <section id="historias" class="tela">
 
-    <div class="topo">
-        <button class="voltar"
-                onclick="voltarInicio()">←</button>
+<header class="cabecalho">
 
-        <div class="titulo-topo">
-            📖 Histórias Bíblicas
-        </div>
-    </div>
+<button class="botao-voltar" onclick="voltarHome()">←</button>
 
+<div class="titulo-tela">
+📖 Histórias Bíblicas
+</div>
 
-    <div class="conteudo">
+</header>
 
-        <div class="card">
+<div class="conteudo">
 
-            <h2>🌎 A Criação</h2>
+<div class="historia" onclick="abrirCriacao()">
 
-            <div class="referencia">
-                📖 Gênesis 1:1 — Gênesis 2:3
-            </div>
+<h2>🌍 A Criação</h2>
 
-            <p>
-                No começo de tudo, Deus criou os céus e a terra.
-                A terra ainda estava sem forma e vazia.
-                Então Deus começou a organizar e criar um mundo
-                cheio de vida, beleza e amor.
-            </p>
+<p>
+Descubra como Deus criou o mundo e tudo o que existe.
+</p>
 
-            <p>
-                Durante seis dias, Deus criou tudo o que existe:
-                a luz, o céu, a terra, as plantas, o sol,
-                a lua, as estrelas, os animais e as pessoas.
-            </p>
-
-            <p>
-                Quando terminou sua obra, Deus viu que tudo
-                o que havia criado era muito bom.
-            </p>
-
-            <p>
-                No sétimo dia, Deus descansou de toda a obra
-                que havia feito e abençoou esse dia.
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <h2>✨ Os sete dias</h2>
-
-            <div class="dias">
-
-                <div class="dia">
-                    <strong>☀️ Primeiro dia</strong>
-                    Deus criou a luz e separou a luz das trevas.
-                </div>
-
-                <div class="dia">
-                    <strong>☁️ Segundo dia</strong>
-                    Deus criou o céu.
-                </div>
-
-                <div class="dia">
-                    <strong>🌱 Terceiro dia</strong>
-                    Deus criou a terra, os mares e as plantas.
-                </div>
-
-                <div class="dia">
-                    <strong>🌞 Quarto dia</strong>
-                    Deus criou o sol, a lua e as estrelas.
-                </div>
-
-                <div class="dia">
-                    <strong>🐦 Quinto dia</strong>
-                    Deus criou os peixes e as aves.
-                </div>
-
-                <div class="dia">
-                    <strong>🦁 Sexto dia</strong>
-                    Deus criou os animais e as pessoas.
-                </div>
-
-                <div class="dia">
-                    <strong>🙏 Sétimo dia</strong>
-                    Deus descansou e abençoou esse dia.
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="card licao">
-
-            <h2>💛 O que aprendemos?</h2>
-
-            <p>
-                Deus criou o mundo com amor e sabedoria.
-                Tudo o que Deus fez é importante.
-                Nós devemos agradecer, cuidar da criação
-                e tratar todas as pessoas e os animais
-                com amor e respeito.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     APRENDIZADO
-========================= -->
-
-<section id="aprendizado" class="tela">
-
-    <div class="topo">
-
-        <button class="voltar"
-                onclick="voltarInicio()">←</button>
-
-        <div class="titulo-topo">
-            💡 Aprendizado
-        </div>
-
-    </div>
-
-
-    <div class="conteudo">
-
-        <div class="card">
-
-            <h2>🌎 A mensagem da Criação</h2>
-
-            <p>
-                A história da Criação nos mostra que Deus
-                fez todas as coisas com propósito.
-            </p>
-
-        </div>
-
-
-        <div class="card licao">
-
-            <h2>💛 Minha lição de hoje</h2>
-
-            <p>
-                Deus criou um mundo maravilhoso.
-            </p>
-
-            <p>
-                Eu posso demonstrar amor cuidando das pessoas,
-                dos animais e da natureza.
-            </p>
-
-            <p>
-                Eu também posso agradecer todos os dias
-                pelas coisas boas que Deus criou.
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <h2>🤔 Vamos pensar?</h2>
-
-            <p><strong>1.</strong> Qual criação de Deus você mais gosta?</p>
-
-            <p><strong>2.</strong> Como você pode cuidar da natureza?</p>
-
-            <p><strong>3.</strong> Por que devemos agradecer a Deus?</p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     ATIVIDADES
-========================= -->
-
-<section id="atividades" class="tela">
-
-    <div class="topo">
-
-        <button class="voltar"
-                onclick="voltarInicio()">←</button>
-
-        <div class="titulo-topo">
-            🎨 Atividades
-        </div>
-
-    </div>
-
-
-    <div class="conteudo">
-
-        <div class="abas-atividades">
-
-            <button class="aba ativa"
-                    onclick="mostrarAtividade('colorir',this)">
-                🎨 Colorir
-            </button>
-
-            <button class="aba"
-                    onclick="mostrarAtividade('puzzle',this)">
-                🧩 Puzzle
-            </button>
-
-            <button class="aba"
-                    onclick="mostrarAtividade('palavras',this)">
-                🔤 Palavras
-            </button>
-
-        </div>
-
-
-        <!-- COLORIR -->
-
-        <div id="colorir"
-             class="atividade ativa">
-
-            <div class="card colorir-area">
-
-                <h2>🎨 Vamos colorir!</h2>
-
-                <p>
-                    Escolha uma cor e toque nas partes
-                    do desenho para colorir.
-                </p>
-
-
-                <div class="paleta">
-
-                    <button class="cor vermelho"
-                            onclick="escolherCor('#ed3030')"></button>
-
-                    <button class="cor amarelo"
-                            onclick="escolherCor('#ffe24a')"></button>
-
-                    <button class="cor azul"
-                            onclick="escolherCor('#3188cf')"></button>
-
-                    <button class="cor verde"
-                            onclick="escolherCor('#42a04b')"></button>
-
-                    <button class="cor roxo"
-                            onclick="escolherCor('#673bb2')"></button>
-
-                    <button class="cor rosa"
-                            onclick="escolherCor('#e51b63')"></button>
-
-                    <button class="cor marrom"
-                            onclick="escolherCor('#795548')"></button>
-
-                </div>
-
-
-                <div class="desenho">
-
-                    <!-- DESENHO DA CRIAÇÃO PARA COLORIR -->
-
-                    <svg viewBox="0 0 600 500">
-
-                        <rect width="600"
-                              height="500"
-                              fill="white"/>
-
-                        <!-- SOL -->
-
-                        <circle id="sol"
-                                onclick="colorir('sol')"
-                                cx="90"
-                                cy="100"
-                                r="45"
-                                fill="white"
-                                stroke="black"
-                                stroke-width="6"/>
-
-                        <!-- NUVEM -->
-
-                        <path id="nuvem"
-                              onclick="colorir('nuvem')"
-                              d="M350 120
-                              Q370 70 420 105
-                              Q470 60 500 115
-                              Q540 110 550 150
-                              L350 150 Z"
-                              fill="white"
-                              stroke="black"
-                              stroke-width="6"/>
-
-                        <!-- ÁRVORE -->
-
-                        <rect id="tronco"
-                              onclick="colorir('tronco')"
-                              x="120"
-                              y="270"
-                              width="45"
-                              height="140"
-                              fill="white"
-                              stroke="black"
-                              stroke-width="6"/>
-
-                        <circle id="copa1"
-                                onclick="colorir('copa1')"
-                                cx="140"
-                                cy="230"
-                                r="70"
-                                fill="white"
-                                stroke="black"
-                                stroke-width="6"/>
-
-                        <circle id="copa2"
-                                onclick="colorir('copa2')"
-                                cx="205"
-                                cy="245"
-                                r="55"
-                                fill="white"
-                                stroke="black"
-                                stroke-width="6"/>
-
-                        <!-- TERRA -->
-
-                        <path id="terra"
-                              onclick="colorir('terra')"
-                              d="M0 410
-                              Q100 350 200 410
-                              Q300 340 400 410
-                              Q500 350 600 400
-                              L600 500
-                              L0 500 Z"
-                              fill="white"
-                              stroke="black"
-                              stroke-width="6"/>
-
-                        <!-- PÁSSARO -->
-
-                        <path id="passaro"
-                              onclick="colorir('passaro')"
-                              d="M350 250
-                              Q370 220 390 250
-                              Q410 220 430 250"
-                              fill="none"
-                              stroke="black"
-                              stroke-width="8"/>
-
-                        <text x="300"
-                              y="55"
-                              text-anchor="middle"
-                              font-size="30"
-                              font-weight="bold">
-                            DEUS CRIOU O MUNDO
-                        </text>
-
-                    </svg>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- PUZZLE -->
-
-        <div id="puzzle"
-             class="atividade">
-
-            <div class="card">
-
-                <h2>🧩 Monte a imagem!</h2>
-
-                <p class="puzzle-info">
-                    Toque em uma peça e depois toque
-                    em outra para trocar suas posições.
-                </p>
-
-                <div id="puzzleBoard"
-                     class="puzzle"></div>
-
-                <button class="proxima-palavra"
-                        onclick="embaralharPuzzle()">
-                    🔄 Embaralhar novamente
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- PALAVRAS -->
-
-        <div id="palavras"
-             class="atividade">
-
-            <div class="card cruzadinha">
-
-                <h2>🔤 Complete a palavra!</h2>
-
-                <div id="perguntaPalavra"
-                     class="pergunta"></div>
-
-                <div id="letras"
-                     class="palavra-linha"></div>
-
-                <div class="palavra-atual">
-
-                    <strong>
-                        💡 Use o teclado para escrever
-                        a resposta.
-                    </strong>
-
-                </div>
-
-                <button class="conferir"
-                        onclick="conferirPalavra()">
-                    ✓ Conferir resposta
-                </button>
-
-                <div id="resultado"
-                     class="resultado"></div>
-
-                <button class="proxima-palavra"
-                        onclick="proximaPalavra()">
-                    Próxima palavra ➜
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     FAMÍLIA
-========================= -->
-
-<section id="familia" class="tela">
-
-    <div class="topo">
-
-        <button class="voltar"
-                onclick="voltarInicio()">←</button>
-
-        <div class="titulo-topo">
-            👨‍👩‍👧‍👦 Para a Família
-        </div>
-
-    </div>
-
-
-    <div class="conteudo">
-
-        <div class="card">
-
-            <h2>💛 Vamos aprender juntos!</h2>
-
-            <p>
-                A família pode participar da Jornada pela Bíblia
-                conversando com as crianças sobre cada história.
-            </p>
-
-            <button class="botao-familia"
-                    onclick="alert('Conversem sobre qual criação de Deus a criança mais gosta e como a família pode cuidar dela.')">
-
-                🌎 Conversar sobre a Criação
-
-            </button>
-
-            <button class="botao-familia"
-                    onclick="alert('Hoje, escolham juntos uma atitude de cuidado: cuidar de uma planta, alimentar um animal ou ajudar alguém.')">
-
-                ❤️ Missão da Família
-
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     BÍBLIA
-========================= -->
-
-<section id="biblia" class="tela">
-
-    <div class="topo">
-
-        <button class="voltar"
-                onclick="voltarInicio()">←</button>
-
-        <div class="titulo-topo">
-            📖 Bíblia Sagrada
-        </div>
-
-    </div>
-
-
-    <div class="conteudo">
-
-        <div class="card">
-
-            <h2>📖 Consulte a Bíblia Sagrada</h2>
-
-            <p>
-                Escolha abaixo o que deseja ler.
-                A consulta será aberta em português.
-            </p>
-
-        </div>
-
-
-        <button class="biblia-opcao"
-                onclick="window.open('https://bibliaalmeida.com/', '_blank')">
-
-            📖 Bíblia Sagrada em Português
-            <br>
-            <small>João Ferreira de Almeida</small>
-
-        </button>
-
-
-        <button class="biblia-opcao"
-                onclick="window.open('https://bibliaalmeida.com/genesis/1/', '_blank')">
-
-            🌎 Ler Gênesis — Capítulo 1
-
-        </button>
-
-
-        <button class="biblia-opcao"
-                onclick="window.open('https://bibliaalmeida.com/genesis/2/', '_blank')">
-
-            🙏 Ler Gênesis — Capítulo 2
-
-        </button>
-
-    </div>
-
-</section>
-
+<span class="referencia">
+Gênesis 1:1 — Gênesis 2:3
+</span>
 
 </div>
 
 
+<div class="historia" onclick="abrirArca()">
+
+<h2>🛶 A Arca de Noé</h2>
+
+<p>
+Uma história sobre obediência, fé e confiança em Deus.
+</p>
+
+<span class="referencia">
+Gênesis 6 — 9
+</span>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+A CRIAÇÃO
+===================================================== -->
+
+<section id="criacao" class="tela">
+
+<header class="cabecalho">
+
+<button class="botao-voltar" onclick="abrirTela('historias')">←</button>
+
+<div class="titulo-tela">
+🌍 A Criação
+</div>
+
+</header>
+
+<div class="conteudo">
+
+<div class="card">
+
+<h2>A História</h2>
+
+<h3>📖 Referência Bíblica</h3>
+
+<p>
+Gênesis 1:1 até Gênesis 2:3.
+</p>
+
+<h3>🌟 O contexto da história</h3>
+
+<p>
+A Bíblia começa mostrando Deus como o Criador de todas as coisas.
+No princípio, Deus criou os céus e a terra.
+Ao longo da criação, Deus fez a luz, organizou os céus e a terra,
+criou plantas, animais e, por fim, criou o ser humano.
+</p>
+
+<p>
+Depois de concluir a sua obra, o sétimo dia foi separado como um
+dia de descanso.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>💡 O que aprendemos?</h2>
+
+<p>
+Deus é o Criador de todas as coisas.
+A criação nos ensina que o mundo possui valor e que devemos cuidar
+das pessoas, dos animais e da natureza.
+</p>
+
+</div>
+
+<button
+class="botao-principal"
+onclick="abrirTela('atividades')">
+
+🎨 Fazer atividades
+
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+APRENDIZADO
+===================================================== -->
+
+<section id="aprendizado" class="tela">
+
+<header class="cabecalho">
+
+<button class="botao-voltar" onclick="voltarHome()">←</button>
+
+<div class="titulo-tela">
+💡 Aprendizado
+</div>
+
+</header>
+
+<div class="conteudo">
+
+<div class="card">
+
+<h2>🌍 A lição da Criação</h2>
+
+<p>
+Deus criou todas as coisas com amor e propósito.
+Nós fazemos parte dessa criação e podemos demonstrar gratidão
+cuidando do mundo e das pessoas ao nosso redor.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>🛶 A lição da Arca de Noé</h2>
+
+<p>
+Noé confiou em Deus e escolheu obedecer.
+Essa história nos ensina que podemos confiar em Deus mesmo quando
+não entendemos completamente o que está acontecendo.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+ATIVIDADES
+===================================================== -->
+
+<section id="atividades" class="tela">
+
+<header class="cabecalho">
+
+<button class="botao-voltar" onclick="voltarHome()">←</button>
+
+<div class="titulo-tela">
+🎨 Atividades
+</div>
+
+</header>
+
+<div class="conteudo">
+
+<div class="grade-atividades">
+
+<button
+class="atividade colorir"
+onclick="abrirTela('colorir')">
+
+🎨<br><br>
+Colorir
+
+</button>
+
+<button
+class="atividade puzzle"
+onclick="abrirPuzzle()">
+
+🧩<br><br>
+Puzzle
+
+</button>
+
+<button
+class="atividade cruzadas"
+onclick="abrirTela('cruzadas')">
+
+🔤<br><br>
+Palavras
+
+</button>
+
+<button
+class="atividade quiz"
+onclick="alert('Quiz em desenvolvimento!')">
+
+❓<br><br>
+Quiz Bíblico
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+COLORIR
+===================================================== -->
+
+<section id="colorir" class="tela">
+
+<header class="cabecalho">
+
+<button class="botao-voltar" onclick="abrirTela('atividades')">←</button>
+
+<div class="titulo-tela">
+🎨 Vamos Colorir!
+</div>
+
+</header>
+
+<div class="conteudo">
+
+<div class="card">
+
+<h2>Escolha uma cor</h2>
+
+<div class="cores">
+
+<button class="cor vermelho"></button>
+<button class="cor amarelo"></button>
+<button class="cor azul"></button>
+<button class="cor verde"></button>
+<button class="cor roxo"></button>
+<button class="cor rosa"></button>
+<button class="cor marrom"></button>
+<button class="cor preto"></button>
+
+</div>
+
+<p>
+Aqui será utilizada a atividade de desenho correspondente à história
+bíblica selecionada.
+</p>
+
+<p>
+🎨 Exemplo atual: Arca de Noé e os animais.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+PUZZLE
+===================================================== -->
+
+<section id="puzzleTela" class="tela">
+
+<header class="cabecalho">
+
+<button class="botao-voltar" onclick="abrirTela('atividades')">←</button>
+
+<div class="titulo-tela">
+🧩 Monte a Imagem
+</div>
+
+</header>
+
+<div class="conteudo">
+
+<div class="card">
+
+<h2>Puzzle Bíblico</h2>
+
+<p>
+Toque em duas peças para trocar suas posições.
+</p>
+
+<div id="puzzleContainer"></div>
+
+<button
+class="botao-principal"
+onclick="embaralharPuzzle()">
+
+🔄 Embaralhar novamente
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+PALAVRAS
+===================================================== -->
+
+<section id="cruzadas" class="tela">
+
+<header class="cabecalho">
+
+<button class="botao-voltar" onclick="abrirTela('atividades')">←</button>
+
+<div class="titulo-tela">
+🔤 Palavras Bíblicas
+</div>
+
+</header>
+
+<div class="conteudo">
+
+<div class="card">
+
+<h2>Complete as palavras</h2>
+
+<div class="cruzadas-container">
+
+<div>
+
+<div class="pergunta-cruzada">
+📖 O livro onde começa a história da criação:
+</div>
+
+<div class="resposta">
+<input class="letra" maxlength="1">
+<input class="letra" maxlength="1">
+<input class="letra" maxlength="1">
+<input class="letra" maxlength="1">
+<input class="letra" maxlength="1">
+<input class="letra" maxlength="1">
+<input class="letra" maxlength="1">
+</div>
+
+</div>
+
+
+<div>
+
+<div class="pergunta-cruzada">
+🛶 Quem construiu a arca?
+</div>
+
+<div class="resposta">
+<input class="letra" maxlength="1">
+<input class="letra" maxlength="1">
+<input class="letra" maxlength="1">
+</div>
+
+</div>
+
+
+<div>
+
+<div class="pergunta-cruzada">
+❤️ Quem criou todas as coisas?
+</div>
+
+<div class="resposta">
+<input class="letra" maxlength="1">
+<input class="letra" maxlength="1">
+<input class="letra" maxlength="1">
+<input class="letra" maxlength="1">
+</div>
+
+</div>
+
+</div>
+
+<button
+class="botao-principal"
+onclick="conferirPalavras()">
+
+Conferir respostas
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+FAMÍLIA
+===================================================== -->
+
+<section id="familia" class="tela">
+
+<header class="cabecalho">
+
+<button class="botao-voltar" onclick="voltarHome()">←</button>
+
+<div class="titulo-tela">
+👨‍👩‍👧‍👦 Para a Família
+</div>
+
+</header>
+
+<div class="conteudo">
+
+<div class="card">
+
+<h2>Vamos aprender juntos!</h2>
+
+<p>
+A Bíblia nos ensina valores importantes que podemos praticar todos
+os dias: amor, bondade, respeito, coragem, perdão e esperança.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+BÍBLIA
+===================================================== -->
+
+<section id="biblia" class="tela">
+
+<header class="cabecalho">
+
+<button class="botao-voltar" onclick="voltarHome()">←</button>
+
+<div class="titulo-tela">
+📖 Bíblia Sagrada
+</div>
+
+</header>
+
+<div class="conteudo">
+
+<div class="card">
+
+<h2>Consultar a Bíblia</h2>
+
+<p>
+Aqui ficará a consulta bíblica em português.
+</p>
+
+<p>
+A aplicação não utilizará mais o Project Gutenberg em inglês como
+destino da consulta.
+</p>
+
+<button
+class="botao-principal"
+onclick="abrirGenesis()">
+
+📖 Ler Gênesis — A Criação
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+JAVASCRIPT
+===================================================== -->
+
+</div>
+
 <script>
 
-/* =========================
-   NAVEGAÇÃO
-========================= */
+function abrirTela(id){
 
-function abrirTela(nome){
-
-    document.getElementById("home").style.display="none";
-
-    document.querySelectorAll(".tela").forEach(function(tela){
-        tela.classList.remove("ativa");
+    document.querySelectorAll('.tela').forEach(function(tela){
+        tela.classList.remove('ativa');
     });
 
-    document.getElementById(nome).classList.add("ativa");
+    document.getElementById(id).classList.add('ativa');
 
     window.scrollTo({
         top:0,
-        behavior:"smooth"
+        behavior:'smooth'
     });
-
 }
 
 
-function voltarInicio(){
-
-    document.querySelectorAll(".tela").forEach(function(tela){
-        tela.classList.remove("ativa");
-    });
-
-    document.getElementById("home").style.display="block";
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-
+function voltarHome(){
+    abrirTela('home');
 }
 
 
-/* =========================
-   ATIVIDADES
-========================= */
-
-function mostrarAtividade(nome,botao){
-
-    document.querySelectorAll(".atividade").forEach(function(item){
-        item.classList.remove("ativa");
-    });
-
-    document.querySelectorAll(".aba").forEach(function(item){
-        item.classList.remove("ativa");
-    });
-
-    document.getElementById(nome).classList.add("ativa");
-
-    botao.classList.add("ativa");
-
+function abrirCriacao(){
+    abrirTela('criacao');
 }
 
 
-/* =========================
-   COLORIR
-========================= */
+function abrirArca(){
 
-let corSelecionada="#ed3030";
-
-function escolherCor(cor){
-
-    corSelecionada=cor;
-
-}
-
-
-function colorir(id){
-
-    document.getElementById(id).setAttribute(
-        "fill",
-        corSelecionada
+    alert(
+        'História: A Arca de Noé\n\n' +
+        'Referência: Gênesis 6 a 9.\n\n' +
+        'Lição: Podemos confiar em Deus e escolher obedecer.'
     );
 
 }
 
 
-/* =========================
-   PUZZLE FUNCIONAL
-========================= */
-
-let ordemPuzzle=[
-    0,1,2,
-    3,4,5,
-    6,7,8
-];
-
-let pecaSelecionada=null;
+function abrirGenesis(){
+    abrirTela('criacao');
+}
 
 
-function criarPuzzle(){
+/* =====================================================
+PUZZLE REAL
+===================================================== */
 
-    const board=document.getElementById("puzzleBoard");
+let pecaSelecionada = null;
 
-    board.innerHTML="";
+function abrirPuzzle(){
 
-    ordemPuzzle.forEach(function(numero,index){
+    abrirTela('puzzleTela');
 
-        const peca=document.createElement("div");
-
-        peca.className="peca";
-
-        const linha=Math.floor(numero/3);
-        const coluna=numero%3;
-
-        peca.style.backgroundPosition=
-            `${coluna*50}% ${linha*50}%`;
-
-        peca.dataset.index=index;
-
-        peca.onclick=function(){
-
-            trocarPeca(index,peca);
-
-        };
-
-        board.appendChild(peca);
-
-    });
+    criarPuzzle();
 
 }
 
 
-function trocarPeca(index,elemento){
+function criarPuzzle(){
 
-    if(pecaSelecionada===null){
+    const container =
+        document.getElementById('puzzleContainer');
 
-        pecaSelecionada=index;
+    container.innerHTML='';
 
-        document.querySelectorAll(".peca")
-        .forEach(function(p){
-            p.classList.remove("selecionada");
-        });
+    for(let i=0;i<9;i++){
 
-        elemento.classList.add("selecionada");
+        const peca=document.createElement('div');
+
+        peca.className='peca';
+
+        peca.style.backgroundImage =
+        "url('2026-09-06_Original.png')";
+
+        const coluna=i%3;
+        const linha=Math.floor(i/3);
+
+        peca.style.backgroundPosition =
+        `${coluna*50}% ${linha*50}%`;
+
+        peca.dataset.posicao=i;
+
+        peca.onclick=function(){
+            selecionarPeca(this);
+        };
+
+        container.appendChild(peca);
+
+    }
+
+    embaralharPuzzle();
+
+}
+
+
+function selecionarPeca(peca){
+
+    if(!pecaSelecionada){
+
+        pecaSelecionada=peca;
+
+        peca.style.outline='5px solid #ffcc33';
 
         return;
 
     }
 
-    if(pecaSelecionada===index){
+    if(pecaSelecionada===peca){
+
+        peca.style.outline='none';
 
         pecaSelecionada=null;
 
-        elemento.classList.remove("selecionada");
-
         return;
 
     }
 
+    let imagem1=pecaSelecionada.style.backgroundPosition;
+    let imagem2=peca.style.backgroundPosition;
 
-    const temporario=ordemPuzzle[pecaSelecionada];
+    pecaSelecionada.style.backgroundPosition=imagem2;
+    peca.style.backgroundPosition=imagem1;
 
-    ordemPuzzle[pecaSelecionada]=ordemPuzzle[index];
-
-    ordemPuzzle[index]=temporario;
+    pecaSelecionada.style.outline='none';
 
     pecaSelecionada=null;
-
-    criarPuzzle();
-
-    verificarPuzzle();
 
 }
 
 
 function embaralharPuzzle(){
 
-    ordemPuzzle.sort(function(){
-        return Math.random()-0.5;
+    const pecas=
+        Array.from(document.querySelectorAll('.peca'));
+
+    const posicoes=pecas.map(
+        p=>p.style.backgroundPosition
+    );
+
+    for(let i=posicoes.length-1;i>0;i--){
+
+        let j=Math.floor(Math.random()*(i+1));
+
+        [posicoes[i],posicoes[j]]=
+        [posicoes[j],posicoes[i]];
+
+    }
+
+    pecas.forEach(function(peca,index){
+        peca.style.backgroundPosition=posicoes[index];
     });
 
-    pecaSelecionada=null;
-
-    criarPuzzle();
-
 }
 
 
-function verificarPuzzle(){
+/* =====================================================
+PALAVRAS
+===================================================== */
 
-    let correto=true;
+function conferirPalavras(){
 
-    ordemPuzzle.forEach(function(valor,index){
-
-        if(valor!==index){
-            correto=false;
-        }
-
-    });
-
-    if(correto){
-
-        setTimeout(function(){
-
-            alert("🎉 Parabéns! Você montou o puzzle!");
-
-        },300);
-
-    }
+    alert(
+        'Respostas esperadas:\n\n' +
+        'GÊNESIS\n' +
+        'NOÉ\n' +
+        'DEUS'
+    );
 
 }
-
-
-/* =========================
-   PALAVRAS
-========================= */
-
-const palavras=[
-
-    {
-        pergunta:"Quem criou o mundo?",
-        resposta:"DEUS"
-    },
-
-    {
-        pergunta:"Qual é o livro sagrado que estamos estudando?",
-        resposta:"BIBLIA"
-    },
-
-    {
-        pergunta:"Quem construiu a Arca?",
-        resposta:"NOE"
-    },
-
-    {
-        pergunta:"Como chamamos o grande barco da história de Noé?",
-        resposta:"ARCA"
-    },
-
-    {
-        pergunta:"Uma das mensagens mais importantes de Deus é:",
-        resposta:"AMOR"
-    },
-
-    {
-        pergunta:"O que cresce quando confiamos em Deus?",
-        resposta:"FE"
-    }
-
-];
-
-let indicePalavra=0;
-
-
-function mostrarPalavra(){
-
-    const atual=palavras[indicePalavra];
-
-    document.getElementById("perguntaPalavra").innerText=
-        atual.pergunta;
-
-    const letras=document.getElementById("letras");
-
-    letras.innerHTML="";
-
-    for(let i=0;i<atual.resposta.length;i++){
-
-        const input=document.createElement("input");
-
-        input.className="letra";
-
-        input.maxLength=1;
-
-        input.setAttribute("autocomplete","off");
-
-        input.addEventListener("input",function(){
-
-            this.value=this.value.toUpperCase();
-
-            const proximo=this.nextElementSibling;
-
-            if(this.value && proximo){
-                proximo.focus();
-            }
-
-        });
-
-        letras.appendChild(input);
-
-    }
-
-    document.getElementById("resultado").innerText="";
-
-}
-
-
-function conferirPalavra(){
-
-    const inputs=document.querySelectorAll(".letra");
-
-    let resposta="";
-
-    inputs.forEach(function(input){
-
-        resposta+=input.value.toUpperCase();
-
-    });
-
-    const correta=palavras[indicePalavra].resposta;
-
-    const resultado=document.getElementById("resultado");
-
-    if(resposta===correta){
-
-        resultado.innerText="🎉 Muito bem! Você acertou!";
-
-        resultado.style.color="#159447";
-
-    }else{
-
-        resultado.innerText="💛 Tente novamente!";
-
-        resultado.style.color="#d35b00";
-
-    }
-
-}
-
-
-function proximaPalavra(){
-
-    indicePalavra++;
-
-    if(indicePalavra>=palavras.length){
-        indicePalavra=0;
-    }
-
-    mostrarPalavra();
-
-}
-
-
-/* =========================
-   INICIALIZAÇÃO
-========================= */
-
-criarPuzzle();
-
-embaralharPuzzle();
-
-mostrarPalavra();
 
 </script>
 
